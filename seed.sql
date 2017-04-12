@@ -1,3 +1,6 @@
+DROP DATABASE IF EXISTS 'tartan-tennis'
+CREATE DATABASE 'tartan-tennis';
+
 -- phpMyAdmin SQL Dump
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
