@@ -1,7 +1,5 @@
 <?php
 
-$page_title = 'Log In';
-
 if (isset($_POST['submitted'])) {
 
 	require_once('includes/login_functions.php');
@@ -28,16 +26,22 @@ if (isset($_POST['submitted'])) {
 	mysqli_close($dbc);
 }
 
+$page_title = 'Log In';
+
+include('includes/header.php');
+
 ?>
 
-<h1>Log In</h1>
-<form action="login.php" method="post">
-<p>Email Address: <input type="email" name="email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
-<p>Password: <input type="password" name="pass" /></p>
-<p><input type="submit" name="submit" value="Log In" /></p>
-<input type="hidden" name="submitted" value="TRUE" />
-</form>
+<div class="row">
+	<h1>Log In</h1>
+	<form action="login.php" method="post">
+		<p>Email Address: <input type="email" name="email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
+		<p>Password: <input type="password" name="pass" /></p>
+		<p><input type="submit" name="submit" value="Log In" /></p>
+		<input type="hidden" name="submitted" value="TRUE" />
+	</form>
+</div>
 
 <?php
-include ('includes/footer.html');
+include('includes/footer.html');
 ?>

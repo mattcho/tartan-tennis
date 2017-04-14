@@ -1,5 +1,5 @@
 <form action='index.php' method='post'>
-	<p>When are you available?</p>
+	<h3>When are you available?</h3>
 	<p>
 		<input id='date' type='date' name='begins_date'>
 		<input id='begins_time' type='time' name='begins_time' step='900' value='13:00'>
@@ -9,66 +9,74 @@
 	<input type='submit'>
 </form>
 
+<h3>Your Matches</h3>
+
 <?php
 
-if (isset($_POST['submitted'])) {
+if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
-	require_once('../mysqli_connect.php');
+	if (isset($_POST['submitted'])) {
 
-	$errors = array();
+		require_once('../mysqli_connect.php');
 
-	if (empty($_POST['begins_date'])) {
-		$errors[] = 'You forgot to enter your available date.<br />';
-	} else {
-		$bd = mysqli_real_escape_string($dbc, trim($_POST['begins_date']));
-	}
+		$errors = array();
 
-	if (empty($_POST['begins_time'])) {
-		$errors[] = 'You forgot to enter your available time.<br />';
-	} else {
-		$bt = mysqli_real_escape_string($dbc, trim($_POST['begins_time']));
-	}
+		if (empty($_POST['begins_date'])) {
+			$errors[] = 'You forgot to enter your available date.<br />';
+		} else {
+			$bd = mysqli_real_escape_string($dbc, trim($_POST['begins_date']));
+		}
 
-	if (empty($_POST['ends_time'])) {
-		$errors[] = 'You forgot to enter how long you would like to play.<br />';
-	} else {
-		$et = mysqli_real_escape_string($dbc, trim($_POST['ends_time']));
-	}
+		if (empty($_POST['begins_time'])) {
+			$errors[] = 'You forgot to enter your available time.<br />';
+		} else {
+			$bt = mysqli_real_escape_string($dbc, trim($_POST['begins_time']));
+		}
 
-	if (empty($errors)) {
+		if (empty($_POST['ends_time'])) {
+			$errors[] = 'You forgot to enter how long you would like to play.<br />';
+		} else {
+			$et = mysqli_real_escape_string($dbc, trim($_POST['ends_time']));
+		}
 
-		$user_id = $_COOKIE['user_id'];
+		if (empty($errors)) {
 
-		$q = "INSERT INTO time_windows (begins_date, begins_time, ends_time, user_id) VALUES ('$bd', '$bt', '$et', $user_id)";
+			$user_id = $_COOKIE['user_id'];
 
-		$r = @mysqli_query($dbc, $q);
+			$q = "INSERT INTO time_windows (begins_date, begins_time, ends_time, user_id) VALUES ('$bd', '$bt', '$et', $user_id)";
 
-		if ($r) {
+			$r = @mysqli_query($dbc, $q);
 
-			$result = @mysqli_query($dbc, "SELECT * FROM time_windows WHERE user_id=$user_id");
+			if ($r) {
 
-			echo '<table class="table">
-			<tr><th>Date</th><th>Begins</th><th>Ends</th></tr>';
+				// JOIN query to produce matches.
+				$query = "SELECT * FROM time_windows WHERE user_id=$user_id";
 
-			while ($row = mysqli_fetch_array($result)) {
-				echo '<tr>
-				<td>' . $row['begins_date']. '</td>
-				<td>' . $row['begins_time']. '</td>
-				<td>' . $row['ends_time'] . '</td></tr>';
+				$result = @mysqli_query($dbc, $query);
+
+				echo '<table class="table">
+				<tr><th>Date</th><th>Begins</th><th>Ends</th></tr>';
+
+				while ($row = mysqli_fetch_array($result)) {
+					echo '<tr>
+					<td>' . $row['begins_date']. '</td>
+					<td>' . $row['begins_time']. '</td>
+					<td>' . $row['ends_time'] . '</td></tr>';
+				}
+
+				echo '</table>';
+
+				// display how many results found
+				// list up all the time windows matched
+				
+			} else {
+				echo '<h1>' . mysqli_error($dbc) . '</h1>';
 			}
-
-			echo '</table>';
-
-			// display how many results found
-			// list up all the time windows matched
 			
 		} else {
-			echo '<h1>' . mysqli_error($dbc) . '</h1>';
-		}
-		
-	} else {
-		foreach($errors as $msg) {
-			echo $msg;
+			foreach($errors as $msg) {
+				echo $msg;
+			}
 		}
 	}
 }
