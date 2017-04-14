@@ -6,37 +6,39 @@ include ('includes/header.html');
 
 if (isset($_POST['submitted'])) {
 
+	require_once('../mysqli_connect.php');
+
 	$errors = array();
 
 	if (empty($_POST['first_name'])) {
 		$errors[] = 'You forgot to enter your first name.<br />';
 	} else {
-		$fn = trim($_POST['first_name']);
+		$fn = mysqli_real_escape_string($dbc, trim($_POST['first_name']));
 	}
 
 	if (empty($_POST['last_name'])) {
 		$errors[] = 'You forgot to enter your last name.<br />';
 	} else {
-		$ln = trim($_POST['last_name']);
+		$ln = mysqli_real_escape_string($dbc, trim($_POST['last_name']));
 	}
 
 	if (empty($_POST['tennis_level'])) {
 		$errors[] = 'You forgot to enter your tennis level.<br />';
 	} else {
-		$t = trim($_POST['tennis_level']);
+		$t = mysqli_real_escape_string($dbc, trim($_POST['tennis_level']));
 	}
 
 	if (empty($_POST['email'])) {
 		$errors[] = 'You forgot to enter your email address.<br />';
 	} else {
-		$e = trim($_POST['email']);
+		$e = mysqli_real_escape_string($dbc, trim($_POST['email']));
 	}
 
 	if (!empty($_POST['pass1'])) {
 		if ($_POST['pass1'] != $_POST['pass2']) {
 			$errors[] = 'Your password did not match the confirmed password.<br />';
 		} else {
-			$p = trim($_POST['pass1']);
+			$p = mysqli_real_escape_string($dbc, trim($_POST['pass1']));
 		}
 	} else {
 		$errors[] = 'You forgot to enter your password.<br />';
@@ -44,7 +46,6 @@ if (isset($_POST['submitted'])) {
 
 	// If everything is OK...
 	if (empty($errors)) {
-		require_once('../mysqli_connect.php');
 
 		$q = "INSERT INTO users (first_name, last_name, tennis_level, email, pass) VALUES ('$fn', '$ln', '$t', '$e', SHA1('$p'))";
 
@@ -66,6 +67,8 @@ if (isset($_POST['submitted'])) {
 			echo $msg;
 		}
 	}
+
+	mysqli_close($dbc);
 }
 
 ?>
