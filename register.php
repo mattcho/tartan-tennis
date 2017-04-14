@@ -2,7 +2,7 @@
 
 $page_title = 'Register';
 
-include ('includes/header.html');
+include ('includes/header.php');
 
 if (isset($_POST['submitted'])) {
 

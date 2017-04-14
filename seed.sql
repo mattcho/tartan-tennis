@@ -6,7 +6,7 @@ CREATE DATABASE 'tartan-tennis';
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 12, 2017 at 11:46 PM
+-- Generation Time: Apr 14, 2017 at 06:15 AM
 -- Server version: 5.6.28
 -- PHP Version: 5.6.25
 
@@ -132,20 +132,25 @@ INSERT INTO `time_windows` (`time_windows_id`, `begins_date`, `begins_time`, `en
 --
 
 CREATE TABLE `users` (
-  `users_id` int(11) UNSIGNED NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `pass` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(20) NOT NULL,
+  `tennis_level` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `pass` char(40) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`users_id`, `first_name`, `last_name`, `email`, `pass`) VALUES
-(1, 'Matt', 'Cho', 'mattcho@email.com', '202cb962ac59075b964b07152d234b70'),
-(2, 'Erin', 'Cho', 'erincho@email.com', '202cb962ac59075b964b07152d234b70');
+INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `tennis_level`, `email`, `pass`, `created_at`, `updated_at`) VALUES
+(3, 'Erin', 'Cho', 'beginner', 'erin@email.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-04-14 01:20:27', '2017-04-14 01:20:27'),
+(6, 'Matt', 'Cho', 'intermediate', 'matt@email.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-04-14 02:56:35', '2017-04-14 02:56:35'),
+(7, 'Chris', 'Lee', 'advanced', 'chris@email.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-04-14 03:06:24', '2017-04-14 03:06:24'),
+(9, 'Kevin', 'Kim', 'advanced', 'kevin@email.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '2017-04-14 03:36:18', '2017-04-14 03:36:18');
 
 --
 -- Indexes for dumped tables
@@ -215,8 +220,13 @@ ALTER TABLE `time_windows`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`users_id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `first_name` (`first_name`),
+  ADD KEY `last_name` (`last_name`),
+  ADD KEY `created_at` (`created_at`),
+  ADD KEY `updated_at` (`updated_at`),
+  ADD KEY `tennis_level` (`tennis_level`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -246,4 +256,4 @@ ALTER TABLE `time_windows`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `users_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;

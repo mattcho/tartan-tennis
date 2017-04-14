@@ -1,8 +1,8 @@
 <?php
 
-$page_title = 'Register';
+$page_title = 'Welcome';
 
-include ('includes/header.html');
+include ('includes/header.php');
 
 ?>
 
