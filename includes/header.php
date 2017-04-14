@@ -2,6 +2,9 @@
 <html>
 <head>
 	<title><?php echo $page_title ?></title>
+	<link rel="includes/stylesheet" href="styles.css">
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="includes/scripts.js"></script>
 </head>
 <body>
 
@@ -18,11 +21,15 @@
 		echo "<li><a href='logout.php'>Log Out</a></li>";
 	} else {
 		echo "<li><a href='register.php'>Sign Up</a></li>
-		<li><a href='login.php'>Log In</a></li>";
+			  <li><a href='login.php'>Log In</a></li>";
 	}
-	?>		
-		
+	?>				
 	</ul>
+	<?php
+	if (isset($_COOKIE['first_name'])) {
+		echo "<h2>Hi, " . $_COOKIE['first_name'] . "!</h2>";
+	}
+	?>
 </div>
 
 <hr />

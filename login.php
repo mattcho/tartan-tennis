@@ -15,7 +15,7 @@ if (isset($_POST['submitted'])) {
 		setcookie('user_id', $data['user_id']);
 		setcookie('first_name', $data['first_name']);
 
-		$url = absolute_url('loggedin.php');
+		$url = absolute_url('index.php');
 
 		header("Location: $url");
 
