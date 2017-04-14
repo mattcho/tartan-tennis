@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title><?php echo $page_title ?></title>
-	<link rel="includes/stylesheet" href="styles.css">
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="includes/styles.css">
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="includes/scripts.js"></script>
 </head>
