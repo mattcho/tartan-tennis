@@ -22,12 +22,6 @@ if (isset($_POST['submitted'])) {
 		$ln = mysqli_real_escape_string($dbc, trim($_POST['last_name']));
 	}
 
-	if (empty($_POST['tennis_level'])) {
-		$errors[] = 'You forgot to enter your tennis level.<br />';
-	} else {
-		$t = mysqli_real_escape_string($dbc, trim($_POST['tennis_level']));
-	}
-
 	if (empty($_POST['email'])) {
 		$errors[] = 'You forgot to enter your email address.<br />';
 	} else {
@@ -47,7 +41,7 @@ if (isset($_POST['submitted'])) {
 	// If everything is OK...
 	if (empty($errors)) {
 
-		$q = "INSERT INTO users (first_name, last_name, tennis_level, email, pass) VALUES ('$fn', '$ln', '$t', '$e', SHA1('$p'))";
+		$q = "INSERT INTO users (first_name, last_name, email, pass) VALUES ('$fn', '$ln', '$e', SHA1('$p'))";
 
 		$r = @mysqli_query($dbc, $q);
 
@@ -77,7 +71,6 @@ if (isset($_POST['submitted'])) {
 <form action="register.php" method="post">
 <p>First Name: <input type="text" name="first_name" value="<?php if (isset($_POST['first_name'])) echo $_POST['first_name']; ?>" /></p>
 <p>Last Name: <input type="text" name="last_name" value="<?php if (isset($_POST['last_name'])) echo $_POST['last_name']; ?>" /></p>
-<p>Tennis Level: <input type="text" name="tennis_level" value="<?php if (isset($_POST['tennis_level'])) echo $_POST['tennis_level']; ?>" /></p>
 <p>Email Address: <input type="email" name="email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
 <p>Password: <input type="password" name="pass1" /></p>
 <p>Confirm Password: <input type="password" name="pass2" /></p>

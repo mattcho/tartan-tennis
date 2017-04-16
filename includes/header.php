@@ -18,7 +18,8 @@
     </div>
     <ul class="nav navbar-nav navbar-right">
 <?php
-	if (isset($_COOKIE['user_id'])) {
+	if (isset($_COOKIE['user_id']) AND isset($_COOKIE['first_name'])) {
+		echo "<li><a href='#'>Hi, " . $_COOKIE['first_name'] . "</a></li>";
 		echo "<li><a href='logout.php'>Log Out</a></li>";
 	} else {
 		echo "<li><a href='register.php'>Sign Up</a></li><li><a href='login.php'>Log In</a></li>";
