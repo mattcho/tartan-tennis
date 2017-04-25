@@ -1,3 +1,22 @@
+<?php
+require('mysqli_connect.php');
+
+$q = "SELECT user_id FROM users";
+
+$r = @mysqli_query($dbc, $q);
+
+$num_users = mysqli_num_rows($r);
+
+$q = "SELECT time_id FROM times WHERE user_id <> {$_COOKIE['user_id']}";
+
+$r = @mysqli_query($dbc, $q);
+
+$num_times = mysqli_num_rows($r);
+
+echo '<h3>The current number of users: ' . $num_users . '</h3>';
+echo '<h3>The available time slots waiting for you: ' . $num_times . '</h3>';
+?>
+
 <form action='index.php' method='post'>
 	<h3>When are you available?</h3>
 	<p>
@@ -17,8 +36,6 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 	if (isset($_POST['submitted'])) {
 
 		echo "<h3>Your Matches</h3>";
-
-		require_once('../mysqli_connect.php');
 
 		$errors = array();
 
@@ -50,7 +67,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
 			$user_id = $_COOKIE['user_id'];
 
-			$q = "INSERT INTO time_windows (begins_date, begins_time, ends_time, tag, user_id) VALUES ('$bd', '$bt', '$et', '$t', $user_id)";
+			$q = "INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES ('$bd', '$bt', '$et', '$t', $user_id)";
 
 			$r = @mysqli_query($dbc, $q);
 
@@ -59,7 +76,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 				// JOIN query to produce matches.
 				$query ="
 				SELECT first_name, last_name, email, begins_date, begins_time, ends_time, tag
-				FROM users INNER JOIN time_windows
+				FROM users INNER JOIN times
 				USING (user_id)
 				WHERE user_id <> '$user_id'
 					AND begins_date = '$bd'
@@ -74,11 +91,10 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 				if ($num > 0) {
 					echo '<h3>' . $num . ' result(s) found.</h3>';
 					echo '<table class="table">
-							<tr><th>First Name</th><th>Last Name</th><th>Email</th><th>Date</th><th>Begins</th><th>Ends</th><th>Tag</th></tr>';
+							<tr><th>Name</th><th>Email</th><th>Date</th><th>Begins</th><th>Ends</th><th>Tag</th></tr>';
 					while ($row = mysqli_fetch_array($result)) {
 						echo '<tr>
-						<td>' . $row['first_name'] . '</td>
-						<td>' . $row['last_name']. '</td>
+						<td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>
 						<td>' . $row['email'] . '</td>
 						<td>' . $row['begins_date'] . '</td>
 						<td>' . $row['begins_time'] . '</td>

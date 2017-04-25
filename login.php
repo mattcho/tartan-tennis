@@ -4,7 +4,7 @@ if (isset($_POST['submitted'])) {
 
 	require_once('includes/login_functions.php');
 
-	require_once('../mysqli_connect.php');
+	require_once('mysqli_connect.php');
 
 	list ($check, $data) = check_login($dbc, $_POST['email'], $_POST['pass']);
 

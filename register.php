@@ -6,7 +6,7 @@ include ('includes/header.php');
 
 if (isset($_POST['submitted'])) {
 
-	require_once('../mysqli_connect.php');
+	require_once('mysqli_connect.php');
 
 	$errors = array();
 
