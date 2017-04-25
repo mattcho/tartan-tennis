@@ -91,15 +91,28 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 				if ($num > 0) {
 					echo '<h3>' . $num . ' result(s) found.</h3>';
 					echo '<table class="table">
-							<tr><th>Name</th><th>Email</th><th>Date</th><th>Begins</th><th>Ends</th><th>Tag</th></tr>';
+							<tr>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Date</th>
+								<th>Begins</th>
+								<th>Ends</th>
+								<th>Tag</th>
+								<th>Friend Request</th>
+								<th>Match Request</th>
+							</tr>';
 					while ($row = mysqli_fetch_array($result)) {
-						echo '<tr>
-						<td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>
-						<td>' . $row['email'] . '</td>
-						<td>' . $row['begins_date'] . '</td>
-						<td>' . $row['begins_time'] . '</td>
-						<td>' . $row['ends_time'] . '</td>
-						<td>' . $row['tag'] . '</td></tr>';
+						echo
+						'<tr>
+							<td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>
+							<td>' . $row['email'] . '</td>
+							<td>' . $row['begins_date'] . '</td>
+							<td>' . $row['begins_time'] . '</td>
+							<td>' . $row['ends_time'] . '</td>
+							<td>' . $row['tag'] . '</td>
+							<td><a class="btn btn-primary btn-sm href="#">Let\'s know</a></td>
+							<td><a class="btn btn-primary btn-sm href="#">Let\'s play</a></td>
+						</tr>';
 					}
 					echo '</table>';
 				} else {

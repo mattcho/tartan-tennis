@@ -4,7 +4,18 @@ $page_title = 'Welcome';
 
 include ('includes/header.php');
 
-include ('match.php');
+?>
+
+<div class="row">
+  <div class="col-md-8">
+<?php include ('match.php'); ?>
+  </div>
+  <div class="col-md-4">
+<?php include ('personal.php'); ?>  	
+  </div>
+</div>
+
+<?php
 
 include ('includes/footer.html');
 
