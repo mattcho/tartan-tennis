@@ -18,12 +18,22 @@
     </div>
     <ul class="nav navbar-nav navbar-right">
 <?php
-	if (isset($_COOKIE['user_id']) AND isset($_COOKIE['first_name'])) {
-		echo "<li><a href='#'>Hi, " . $_COOKIE['first_name'] . "</a></li>";
-		echo "<li><a href='logout.php'>Log Out</a></li>";
-	} else {
-		echo "<li><a href='register.php'>Sign Up</a></li><li><a href='login.php'>Log In</a></li>";
-	}
+
+require('mysqli_connect.php');
+
+$q = "SELECT message_id FROM messages WHERE receiver_id={$_COOKIE['user_id']}";
+
+$r = @mysqli_query($dbc, $q);
+
+$num = mysqli_num_rows($r);
+
+if (isset($_COOKIE['user_id']) AND isset($_COOKIE['first_name'])) {
+	echo "<li><a href='#'>Hi, " . $_COOKIE['first_name'] . "</a></li>";
+	echo "<li><a href='#'>Message($num)</a></li>";
+	echo "<li><a href='logout.php'>Log Out</a></li>";
+} else {
+	echo "<li><a href='register.php'>Sign Up</a></li><li><a href='login.php'>Log In</a></li>";
+}
 ?>	
     </ul>
   </div>
