@@ -5,4 +5,4 @@ Web application for CMU students to best utilize on-campus tennis courts by iden
 
 ## Installation
 
-bower install bootstrap jquery
+	bower install bootstrap jquery
