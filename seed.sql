@@ -86,7 +86,9 @@ CREATE TABLE `messages` (
   `message_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `sender_id` int(11) NOT NULL,
   `receiver_id` int(11) NOT NULL,
+  `message_title` text NOT NULL,
   `message_body` text NOT NULL,
+  `is_read` boolean DEFAULT FALSE,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
