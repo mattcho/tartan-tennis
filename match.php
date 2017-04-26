@@ -75,7 +75,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
 				// JOIN query to produce matches.
 				$query ="
-				SELECT first_name, last_name, email, begins_date, begins_time, ends_time, tag
+				SELECT user_id, first_name, last_name, email, begins_date, begins_time, ends_time, tag
 				FROM users INNER JOIN times
 				USING (user_id)
 				WHERE user_id <> '$user_id'
@@ -110,8 +110,9 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 							<td>' . $row['begins_time'] . '</td>
 							<td>' . $row['ends_time'] . '</td>
 							<td>' . $row['tag'] . '</td>
-							<td><a class="btn btn-primary btn-sm href="#">Let\'s know</a></td>
-							<td><a class="btn btn-primary btn-sm href="#">Let\'s play</a></td>
+							<td><a class="btn btn-primary btn-sm" href="friend_request.php?receiver_id='
+							. $row['user_id'] . '">Let\'s know</a></td>
+							<td><a class="btn btn-primary btn-sm" href="#">Let\'s play</a></td>
 						</tr>';
 					}
 					echo '</table>';
