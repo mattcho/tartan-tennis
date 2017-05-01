@@ -133,6 +133,8 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 } else {
 	if (isset($_POST['submitted'])) {
 		echo "<h3>Please sign up or log in!</h3>";
+		echo "<h4>If you think you are too lazy to sign up,</h4>";
+		echo "<h4>try \"john@email.com\" and \"1234567\"</h4>";
 	}
 }
 
