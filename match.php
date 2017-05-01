@@ -100,6 +100,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 								<th>Tag</th>
 								<th>Friend Request</th>
 								<th>Match Request</th>
+								<th>Like this guy!</th>
 							</tr>';
 					while ($row = mysqli_fetch_array($result)) {
 						echo
@@ -113,6 +114,8 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 							<td><a class="btn btn-primary btn-sm" href="friend_request.php?receiver_id='
 							. $row['user_id'] . '">Let\'s know</a></td>
 							<td><a class="btn btn-primary btn-sm" href="#">Let\'s play</a></td>
+							<td><a class="btn btn-primary btn-sm" href="like.php?likee_id='
+							. $row['user_id'] . '">Like</a></td>
 						</tr>';
 					}
 					echo '</table>';
