@@ -28,7 +28,7 @@ $r = @mysqli_query($dbc, $q);
 $num = mysqli_num_rows($r);
 
 if (isset($_COOKIE['user_id']) AND isset($_COOKIE['first_name'])) {
-	echo "<li><a href='#'>Hi, " . $_COOKIE['first_name'] . "</a></li>";
+	echo "<li><a href='index.php'>Hi, " . $_COOKIE['first_name'] . "</a></li>";
 	echo "<li><a href='message.php'>Message ($num)</a></li>";
 	echo "<li><a href='logout.php'>Log Out</a></li>";
 } else {
