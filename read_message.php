@@ -33,13 +33,13 @@ while ($r = mysqli_fetch_array($ra)) {
 		echo '<a class="btn btn-primary btn-sm" href="reject_appointment.php?receiver_id='
                             . $r['sender_id'] . '">Reject</a>';
 	}
-	{
+	
 		echo '<h3>' . $r['message_title'] . '</h3>';
 		echo $r['message_body'];
 		echo '<h3> </h3>';
 		echo '<a class="btn btn-primary btn-sm" href="send_message.php?receiver_id='
                             . $r['sender_id'] . '">Send Back</a>';
-	}
+	
 }
 
 ?>
