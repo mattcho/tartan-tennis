@@ -21,25 +21,28 @@ while ($r = mysqli_fetch_array($ra)) {
 		echo $r['message_body'];
 		echo '<h3> </h3>';
 		echo '<a class="btn btn-primary btn-sm" href="accept_friend.php?friender_id='
-                            . $r['sender_id'] . '">Accept</a>';
-		echo '<a class="btn btn-primary btn-sm" href="reject_friend.php?receiver_id='
-                            . $r['sender_id'] . '">Reject</a>';
+                            . $r['sender_id'] . '">Accept</a>		';
+		echo '		<a class="btn btn-primary btn-sm" href="reject_friend.php?receiver_id='
+                            . $r['sender_id'] . '">Reject</a>		';
+        echo '		<a class="btn btn-primary btn-sm" href="send_message.php?receiver_id='
+                            . $r['sender_id'] . '">Send Message</a>';
 	}else if($r['message_title']=='Appointment Request'){
 		echo '<h3>' . $r['message_title'] . '</h3>';
 		echo $r['message_body'];
 		echo '<h3> </h3>';
 		echo '<a class="btn btn-primary btn-sm" href="accept_appointment.php?poster_id='
-                            . $r['sender_id'] . '">Accept</a>';
-		echo '<a class="btn btn-primary btn-sm" href="reject_appointment.php?receiver_id='
-                            . $r['sender_id'] . '">Reject</a>';
-	}
-	
+                            . $r['sender_id'] . '">Accept</a>		';
+		echo '		<a class="btn btn-primary btn-sm" href="reject_appointment.php?receiver_id='
+                            . $r['sender_id'] . '">Reject</a>		';
+        echo '		<a class="btn btn-primary btn-sm" href="send_message.php?receiver_id='
+                            . $r['sender_id'] . '">Send Message</a>';
+	}else{
 		echo '<h3>' . $r['message_title'] . '</h3>';
 		echo $r['message_body'];
 		echo '<h3> </h3>';
 		echo '<a class="btn btn-primary btn-sm" href="send_message.php?receiver_id='
-                            . $r['sender_id'] . '">Send Back</a>';
-	
+                            . $r['sender_id'] . '">Send Message</a>';
+	}
 }
 
 ?>

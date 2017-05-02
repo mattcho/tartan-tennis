@@ -9,9 +9,9 @@ require('mysqli_connect.php');
 if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
 echo '<h3> My Friends List    <a class="btn btn-primary btn-sm" href="friends_list.php?receiver_id='
-							. $_COOKIE['user_id'] . '">Details </a> </h3> ';
+							. $_COOKIE['user_id'] . '">Show More </a> </h3> ';
 
-$q = "SELECT user_id, first_name, last_name FROM users INNER JOIN friends ON friender_id=user_id WHERE friendee_id={$_COOKIE['user_id']}";
+$q = "SELECT user_id, first_name, last_name FROM users INNER JOIN friends ON friender_id=user_id WHERE friendee_id={$_COOKIE['user_id']} LIMIT 15";
 
 $r = @mysqli_query($dbc, $q);
  

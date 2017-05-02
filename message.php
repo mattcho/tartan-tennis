@@ -17,7 +17,8 @@ if(isset($_COOKIE['user_id']))
     $message_new = mysqli_num_rows($rn);
     echo '<h3>Your personal message: ' . $message_all . '</h3>'; 
     echo '<h3>New message: ' . $message_new . '</h3>';
-
+    echo '<h3> <a class="btn btn-primary btn-sm" href="send_message.php?receiver_id='
+                            . $_COOKIE['user_id'] . '">Send Message</a></h3> ';
     echo '<table class="table">
     <tr>
         <th>Message Title</th>
