@@ -25,6 +25,7 @@ if(isset($_COOKIE['user_id']))
         <th>Receiver</th>
         <th>Time</th>
         <th>New Message</th>
+        <th>Status</th>
     </tr>';
     while($row = mysqli_fetch_array($ra)) {
         $newmessage = "New";

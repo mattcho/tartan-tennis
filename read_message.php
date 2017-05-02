@@ -15,11 +15,31 @@ while ($r = mysqli_fetch_array($ra)) {
 
 	$up = "UPDATE messages SET is_read = 1 WHERE message_id = $id";
 	$u = mysqli_query($dbc, $up);
-	echo '<h3>' . $r['message_title'] . '</h3>';
-	echo $r['message_body'];
-	echo '<h3> </h3>';
-	echo '<a class="btn btn-primary btn-sm" href="send_message.php?receiver_id='
+
+	if($r['message_title']=='Friend Request'){
+		echo '<h3>' . $r['message_title'] . '</h3>';
+		echo $r['message_body'];
+		echo '<h3> </h3>';
+		echo '<a class="btn btn-primary btn-sm" href="accept_friend.php?friender_id='
+                            . $r['sender_id'] . '">Accept</a>';
+		echo '<a class="btn btn-primary btn-sm" href="reject_friend.php?receiver_id='
+                            . $r['sender_id'] . '">Reject</a>';
+	}else if($r['message_title']=='Appointment Request'){
+		echo '<h3>' . $r['message_title'] . '</h3>';
+		echo $r['message_body'];
+		echo '<h3> </h3>';
+		echo '<a class="btn btn-primary btn-sm" href="accept_appointment.php?poster_id='
+                            . $r['sender_id'] . '">Accept</a>';
+		echo '<a class="btn btn-primary btn-sm" href="reject_appointment.php?receiver_id='
+                            . $r['sender_id'] . '">Reject</a>';
+	}else
+	{
+		echo '<h3>' . $r['message_title'] . '</h3>';
+		echo $r['message_body'];
+		echo '<h3> </h3>';
+		echo '<a class="btn btn-primary btn-sm" href="send_message.php?receiver_id='
                             . $r['sender_id'] . '">Send Back</a>';
+	}
 }
 
 ?>
