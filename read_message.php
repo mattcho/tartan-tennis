@@ -32,7 +32,7 @@ while ($r = mysqli_fetch_array($ra)) {
                             . $r['sender_id'] . '">Accept</a>';
 		echo '<a class="btn btn-primary btn-sm" href="reject_appointment.php?receiver_id='
                             . $r['sender_id'] . '">Reject</a>';
-	}else
+	}
 	{
 		echo '<h3>' . $r['message_title'] . '</h3>';
 		echo $r['message_body'];
