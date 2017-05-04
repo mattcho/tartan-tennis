@@ -1,1 +1,52 @@
-<h3>Friends List</h3>
+<!-- FAN -->
+<!-- show the friends of the user -->
+
+<?php
+
+
+require('mysqli_connect.php');
+
+if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
+
+echo '<h3> My Friends List </h3> ';
+
+$all = "SELECT * FROM friends WHERE friender_id = {$_COOKIE['user_id']} OR friendee_id = {$_COOKIE['user_id']} LIMIT 15";
+$ra = mysqli_query($dbc, $all);
+$num_friends = mysqli_num_rows($ra);
+
+if ($num_friends > 0) {
+					echo '<table class="table">
+							<tr>
+								<th>UserID</th>
+								<th>Name</th>
+							</tr>';
+					while ($row = mysqli_fetch_array($ra)) {
+							$q = "SELECT first_name, last_name FROM users WHERE user_id = {$row['friender_id']}";
+					        $q2 = "SELECT first_name, last_name FROM users WHERE user_id = {$row['friendee_id']}";
+					        $r = mysqli_query($dbc, $q);
+					        $r2 = mysqli_query($dbc, $q2);
+					        $subr = mysqli_fetch_array($r);
+					        $subr2 = mysqli_fetch_array($r2);
+						if($row['friender_id'] == $_COOKIE['user_id']){
+						echo
+						'<tr>
+							<td>' . $row['friendee_id'] . '</td>
+							<td>' . $subr2['first_name'] . ' ' . $subr2['last_name'] . '</td>
+						</tr>';
+						}else{
+						echo
+						'<tr>
+							<td>' . $row['friender_id'] . '</td>
+							<td>' . $subr['first_name'] . ' ' . $subr['last_name'] . '</td>
+						</tr>';
+						}
+					}
+					echo '</table>';
+				} else {
+					echo '<h3>You have no friends now.</h3>';
+				}
+}
+echo " ";
+echo '<h3><a class="btn btn-primary btn-sm" href="friends_list.php?receiver_id='
+							. $_COOKIE['user_id'] . '">Show more</a> </h3> ';
+?>

@@ -113,7 +113,8 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 							<td>' . $row['tag'] . '</td>
 							<td><a class="btn btn-primary btn-sm" href="friend_request.php?receiver_id='
 							. $row['user_id'] . '">Let\'s know</a></td>
-							<td><a class="btn btn-primary btn-sm" href="#">Let\'s play</a></td>
+							<td><a class="btn btn-primary btn-sm" href="appoinment_request.php?receiver_id='
+							. $row['user_id'] . '& begins_date='. $row['begins_date'] . '& begins_time=' . $row['begins_time'] . '& ends_time=' . $row['ends_time'] . '">Let\'s play</a></td>
 							<td><a class="btn btn-primary btn-sm" href="like.php?likee_id='
 							. $row['user_id'] . '">Like</a></td>
 						</tr>';
