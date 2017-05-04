@@ -11,7 +11,11 @@ include ('includes/header.php');
 <?php include ('match.php'); ?>
   </div>
   <div class="col-md-4">
-<?php include ('personal.php'); ?>  	
+<?php include ('personal.php'); ?>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+  </div>
+  <div class="col-md-4">
+<?php include ('activity_feeds.php'); ?>  	
   </div>
 </div>
 

@@ -2,23 +2,27 @@
 require('mysqli_connect.php');
 
 $q = "SELECT user_id FROM users";
-
 $r = @mysqli_query($dbc, $q);
-
 $num_users = mysqli_num_rows($r);
 
-$q = "SELECT time_id FROM times WHERE user_id <> {$_COOKIE['user_id']}";
+$q1 = "SELECT time_id FROM times ";
+$r1 = @mysqli_query($dbc, $q1);
 
-$r = @mysqli_query($dbc, $q);
+$q2 = "SELECT time_id FROM times WHERE user_id <> {$_COOKIE['user_id']}";
+$r2= @mysqli_query($dbc, $q2);
 
-$num_times = mysqli_num_rows($r);
+if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
+	$num_times = mysqli_num_rows($r2);
+}else{
+	$num_times = mysqli_num_rows($r1);
+}
 
 echo '<h3>The current number of users: ' . $num_users . '</h3>';
 echo '<h3>The available time slots waiting for you: ' . $num_times . '</h3>';
+echo '<h3>When are you available?  OR  See all available time! <a class="btn btn-primary btn-sm" href="alltime.php">Show all</a></h3>';
 ?>
 
 <form action='index.php' method='post'>
-	<h3>When are you available?</h3>
 	<p>
 		<input id='date' type='date' name='begins_date'>
 		<input id='begins_time' type='time' name='begins_time' step='900' value='13:00'>
@@ -35,7 +39,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
 	if (isset($_POST['submitted'])) {
 
-		echo "<h3>Your Matches</h3>";
+		echo "<h3>~~~~~~~~~~~~Your Matches~~~~~~~~~~~~</h3>";
 
 		$errors = array();
 
