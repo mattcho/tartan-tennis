@@ -13,15 +13,11 @@ include ('includes/header.php');
   <div class="col-md-4">
 <?php include ('personal.php'); ?>
 <br><br><br><br><br><br><br><br><br><br><br><br>
-  </div>
-  <div class="col-md-4">
-<?php include ('activity_feeds.php'); ?>  	
+<?php include ('activity_feeds.php'); ?> 
   </div>
 </div>
 
 <?php
-
 include ('includes/footer.html');
-
 ?>
 
