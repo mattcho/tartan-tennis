@@ -108,6 +108,9 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 								<th>Like this guy!</th>
 							</tr>';
 					while ($row = mysqli_fetch_array($result)) {
+						$likeq = "SELECT * FROM likes WHERE likee_id = {$row['user_id']}";
+						$liker = mysqli_query($dbc, $likeq);
+						$num_like = mysqli_num_rows($liker);
 						echo
 						'<tr>
 							<td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>
@@ -124,18 +127,17 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 							<td><a class="btn btn-primary btn-sm" href="appoinment_request.php?receiver_id='
 							. $row['user_id'] . '& begins_date='. $row['begins_date'] . '& begins_time=' . $row['begins_time'] . '& ends_time=' . $row['ends_time'] . '">Let\'s play</a></td>
 							<td><a class="btn btn-primary btn-sm" href="like.php?likee_id='
-							. $row['user_id'] . '">Like</a></td>
+							. $row['user_id'] . '">Like</a>' . $num_like . '</td>
 						</tr>';
 					}
 					echo '</table>';
 					echo '<h3> </h3>';
 
-					echo '<h3>Can\'t find suitable match? See all!</h3>';
-					echo '<a class="btn btn-primary btn-sm" href="alltime.php">Show all</a></h3>';
 				} else {
 					echo '<h3>No Match Found.</h3>';
 				}
-				
+				echo '<h4>Can\'t find suitable match? See all!</h4>';
+				echo '<a class="btn btn-primary btn-sm" href="alltime.php">Show all</a></h3>';	
 			} else {
 				echo '<h1>' . mysqli_error($dbc) . '</h1>';
 			}
