@@ -49,7 +49,9 @@ ALTER TABLE `friends`
 CREATE TABLE `appointments` (
   `appointment_id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `poster_id` int(10) UNSIGNED NOT NULL,
-  `responder_id` int(10) UNSIGNED NOT NULL
+  `responder_id` int(10) UNSIGNED NOT NULL,
+  `time_id` int(10) UNSIGNED NOT NULL,
+  `is_accepted` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `appointments`
