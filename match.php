@@ -19,7 +19,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
 echo '<h3>The current number of users: ' . $num_users . '</h3>';
 echo '<h3>The available time slots waiting for you: ' . $num_times . '</h3>';
-echo '<h3>When are you available?  OR  See all available time! <a class="btn btn-primary btn-sm" href="alltime.php">Show all</a></h3>';
+
 ?>
 
 <form action='index.php' method='post'>
@@ -39,7 +39,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
 	if (isset($_POST['submitted'])) {
 
-		echo "<h3>~~~~~~~~~~~~Your Matches~~~~~~~~~~~~</h3>";
+		echo "<h4>~~~~~~~~~~~~Your Matches~~~~~~~~~~~~</h4>";
 
 		$errors = array();
 
@@ -93,7 +93,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
 
 				if ($num > 0) {
-					echo '<h3>' . $num . ' result(s) found.</h3>';
+					echo '<h4>' . $num . ' result(s) found.</h4>';
 					echo '<table class="table">
 							<tr>
 								<th>Name</th>
@@ -102,6 +102,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 								<th>Begins</th>
 								<th>Ends</th>
 								<th>Tag</th>
+								<th>Dashboard</th>
 								<th>Friend Request</th>
 								<th>Match Request</th>
 								<th>Like this guy!</th>
@@ -115,6 +116,9 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 							<td>' . $row['begins_time'] . '</td>
 							<td>' . $row['ends_time'] . '</td>
 							<td>' . $row['tag'] . '</td>
+							<td><a class="btn btn-primary btn-sm"
+							a href="dashboard.php?profile_id='
+							. $row['user_id'] . '& user='. $_COOKIE['user_id'] . '">Dashboard</a></td>
 							<td><a class="btn btn-primary btn-sm" href="friend_request.php?receiver_id='
 							. $row['user_id'] . '">Let\'s know</a></td>
 							<td><a class="btn btn-primary btn-sm" href="appoinment_request.php?receiver_id='
@@ -124,6 +128,10 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 						</tr>';
 					}
 					echo '</table>';
+					echo '<h3> </h3>';
+
+					echo '<h3>Can\'t find suitable match? See all!</h3>';
+					echo '<a class="btn btn-primary btn-sm" href="alltime.php">Show all</a></h3>';
 				} else {
 					echo '<h3>No Match Found.</h3>';
 				}
