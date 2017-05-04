@@ -28,9 +28,8 @@ while($row = mysqli_fetch_array($r)) {
 
     } else {
         echo '<a class="btn btn-primary btn-sm" href="send_message.php?receiver_id='
-                            . $profile_id . '">Send Message</a>';
-        echo '<h3> </h3>';
-        echo '<a class="btn btn-primary btn-sm" href="friend_request.php?receiver_id='
+                            . $profile_id . '">Send Message</a>' . '              ' . 
+        '<a class="btn btn-primary btn-sm" href="friend_request.php?receiver_id='
                             . $profile_id . '">Add friend</a>';
 
     }
@@ -74,38 +73,40 @@ if($user == $profile_id) {
     $num_friends = mysqli_num_rows($ra);
 
     echo '<h3>Current Friend: ' . $num_friends . '</h3>';
-    while($row = mysqli_fetch_array($ra)) {
 
-        if ($num_friends > 0) {
-            echo '<table class="table">
-            <tr>
-            <th>UserID</th>
-            <th>Name</th>
-            </tr>';
-            while ($row2 = mysqli_fetch_array($ra)) {
-                $q_1 = "SELECT first_name, last_name FROM users WHERE user_id = {$row['friender_id']}";
-                $q2_2 = "SELECT first_name, last_name FROM users WHERE user_id = {$row['friendee_id']}";
-                $r_1 = mysqli_query($dbc, $q_1);
-                $r_2 = mysqli_query($dbc, $q_2);
-                $subr_1 = mysqli_fetch_array($r_1);
-                $subr_2 = mysqli_fetch_array($r_2);
-                if($row2['friender_id'] == $profile_id){
+    if ($num_friends > 0) {
+        echo '<table class="table">
+        <tr>
+        <th>UserID</th>
+        <th>Name</th>
+        </tr>';   
+    
+        while($row = mysqli_fetch_array($ra)) {
+
+            if($row['friender_id'] == $profile_id){
+                $q1 = "SELECT * FROM users WHERE user_id = {$row['friendee_id']}";
+                $r1 = mysqli_query($dbc, $q1);
+                while($row_1 = mysqli_fetch_array($r1)) {
                     echo
                     '<tr>
-                    <td>' . $row2['friendee_id'] . '</td>
-                            <td>' . $subr_2['first_name'] . ' ' . $subr_2['last_name'] . '</td>
+                    <td>' . $row['friendee_id'] . '</td>
+                    <td>' . $row_1['first_name'] . ' ' . $row_1['last_name'] . '</td>
                     </tr>';
-
-                } else {
+                }
+            } else {
+                $q2 = "SELECT * FROM users WHERE user_id = {$row['friender_id']}";
+                $r2 = mysqli_query($dbc, $q2);
+                while($row_2 = mysqli_fetch_array($r2)) {
                     echo
                     '<tr>
-                    <td>' . $row2['friender_id'] . '</td>
-                    <td>' . $subr_1['first_name'] . ' ' . $subr_1['last_name'] . '</td>
+                    <td>' . $row['friender_id'] . '</td>
+                    <td>' . $row_2['first_name'] . ' ' . $row_2['last_name'] . '</td>
                     </tr>';
                 }
             }
-                    echo '</table>';
-        }
+        }   
+        echo '</table>';
+        
     }
 
 }
