@@ -31,6 +31,8 @@ if (isset($_COOKIE['user_id']) AND isset($_COOKIE['first_name'])) {
 	echo "<li><a href='index.php'>Hi, " . $_COOKIE['first_name'] . "</a></li>";
 	//echo "<li><a href='message.php'>New Message ($num)</a></li>";
 	echo "<li><a href='homepage.php'>My Activities</a></li>";
+	echo '<li><a href="dashboard.php?profile_id='
+							. $_COOKIE['user_id'] . '">Dashboard</a></li> ';
 	if($num > 0) {
 		echo "<li><a href='message.php'>New Message ($num)</a></li>";
 	} else {
