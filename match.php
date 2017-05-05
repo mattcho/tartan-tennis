@@ -79,7 +79,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
 				// JOIN query to produce matches.
 				$query ="
-				SELECT user_id, first_name, last_name, email, begins_date, begins_time, ends_time, tag
+				SELECT user_id, first_name, last_name, email, begins_date, begins_time, ends_time, tag, time_id
 				FROM users INNER JOIN times
 				USING (user_id)
 				WHERE user_id <> '$user_id'
@@ -90,6 +90,8 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 				
 				// count the number of results
 				$num = mysqli_num_rows($result);
+
+
 
 
 				if ($num > 0) {
@@ -111,6 +113,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 						$likeq = "SELECT * FROM likes WHERE likee_id = {$row['user_id']}";
 						$liker = mysqli_query($dbc, $likeq);
 						$num_like = mysqli_num_rows($liker);
+
 						echo
 						'<tr>
 							<td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>
@@ -122,10 +125,13 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 							<td><a class="btn btn-primary btn-sm"
 							a href="dashboard.php?profile_id='
 							. $row['user_id'] . '& user='. $_COOKIE['user_id'] . '">Dashboard</a></td>
+
 							<td><a class="btn btn-primary btn-sm" href="friend_request.php?receiver_id='
 							. $row['user_id'] . '">Let\'s know</a></td>
+
 							<td><a class="btn btn-primary btn-sm" href="appoinment_request.php?receiver_id='
-							. $row['user_id'] . '& begins_date='. $row['begins_date'] . '& begins_time=' . $row['begins_time'] . '& ends_time=' . $row['ends_time'] . '">Let\'s play</a></td>
+							. $row['user_id'] . '& time_id='. $row['time_id'] . '& begins_date='. $row['begins_date'] . '& begins_time=' . $row['begins_time'] . '& ends_time=' . $row['ends_time'] . '">Let\'s play</a></td>
+
 							<td><a class="btn btn-primary btn-sm" href="like.php?likee_id='
 							. $row['user_id'] . '">Like</a>' . $num_like . '</td>
 						</tr>';

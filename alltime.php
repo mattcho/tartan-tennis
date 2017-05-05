@@ -1,3 +1,6 @@
+<!-- FAN -->
+<!-- show all the available time slots in the system -->
+
 <?php
 
 $page_title = 'All available time';
@@ -5,62 +8,59 @@ $page_title = 'All available time';
 include ('includes/header.php');
 require('mysqli_connect.php');
 
-$q = "SELECT time_id FROM times WHERE user_id <> {$_COOKIE['user_id']}";
-$r = @mysqli_query($dbc, $q);
-$num_times = mysqli_num_rows($r);
-echo '<h3>The available time slots waiting for you: ' . $num_times . '</h3>';
-
-
-
-
 
 if(isset($_COOKIE['user_id']))
 {
 
-    $all = "SELECT * FROM messages WHERE sender_id = {$_COOKIE['user_id']} OR receiver_id = {$_COOKIE['user_id']}";
-    $new = "SELECT * FROM messages WHERE receiver_id = {$_COOKIE['user_id']} AND is_read = 0";
+    $q = "SELECT time_id FROM times ";
+    $r = @mysqli_query($dbc, $q);
+    $num_times = mysqli_num_rows($r);
+    echo '<h3>The available time slots from all users: ' . $num_times . '</h3>';
+    echo '<h3>~~~~~~~~~~~~~~All the available time~~~~~~~~~~~~~~</h3>'; 
+    $qt =" SELECT user_id, first_name, last_name, email, begins_date, begins_time, ends_time, tag
+                    FROM users INNER JOIN times
+                    USING (user_id)
+                    WHERE user_id <> '$user_id'
+                    ";
 
-    $ra = mysqli_query($dbc, $all);
-    $rn = mysqli_query($dbc, $new);
+    $result = @mysqli_query($dbc, $qt);
+                    
+     // count the number of results
+    $num = mysqli_num_rows($result);
 
-    $message_all = mysqli_num_rows($ra);
-    $message_new = mysqli_num_rows($rn);
-    echo '<h3>Your personal message: ' . $message_all . '</h3>'; 
-    echo '<h3>New message: ' . $message_new . '</h3>';
-    echo '<h3> <a class="btn btn-primary btn-sm" href="send_message.php?receiver_id='
-                            . $_COOKIE['user_id'] . '">Send Message</a></h3> ';
     echo '<table class="table">
     <tr>
-        <th>Message Title</th>
-        <th>Sender</th>
-        <th>Receiver</th>
-        <th>Time</th>
-        <th>New Message</th>
-        <th>Status</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Date</th>
+    <th>Begins</th>
+    <th>Ends</th>
+    <th>Tag</th>
+    <th>Dashboard</th>
+     <th>Friend Request</th>
+    <th>Match Request</th>
+    <th>Like this guy!</th>
     </tr>';
-    while($row = mysqli_fetch_array($ra)) {
-        $newmessage = "New";
-        $q = "SELECT first_name FROM users WHERE user_id = {$row['sender_id']}";
-        $q2 = "SELECT first_name FROM users WHERE user_id = {$_COOKIE['user_id']}";
-        $r = mysqli_query($dbc, $q);
-        $r2 = mysqli_query($dbc, $q2);
-        $subr = mysqli_fetch_array($r);
-        $subr2 = mysqli_fetch_array($r2);
-        setcookie("message", $row['message_id']);
 
-        if($row['is_read'] == 1) {
-            $newmessage = "Already Read";
-        }
-        echo
-        '</tr>
-        <td>' . $row['message_title'] . '</td>
-        <td>' . $subr['first_name'] . '</td>
-        <td>' . $subr2['first_name'] . '</td>
-        <td>' . $row['created_at'] . '</td>
-        <td>' . $newmessage . '</td>
-        <td><a class="btn btn-primary btn-sm" href="read_message.php?message_id='
-                            . $row['message_id'] . '">Read</a></td>
-        </tr>';                            
+while ($row = mysqli_fetch_array($result)) {
+    echo
+    '<tr>
+    <td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>
+    <td>' . $row['email'] . '</td>
+    <td>' . $row['begins_date'] . '</td>
+    <td>' . $row['begins_time'] . '</td>
+    <td>' . $row['ends_time'] . '</td>
+    <td>' . $row['tag'] . '</td>
+    <td><a class="btn btn-primary btn-sm"
+    a href="dashboard.php?profile_id='
+     . $row['user_id'] . '& user='. $_COOKIE['user_id'] . '">Dashboard</a></td>
+    <td><a class="btn btn-primary btn-sm" href="friend_request.php?receiver_id='
+     . $row['user_id'] . '">Let\'s know</a></td>
+    <td><a class="btn btn-primary btn-sm" href="appoinment_request.php?receiver_id='
+    . $row['user_id'] . '& begins_date='. $row['begins_date'] . '& begins_time=' . $row['begins_time'] . '& ends_time=' . $row['ends_time'] . '">Let\'s play</a></td>
+    <td><a class="btn btn-primary btn-sm" href="like.php?likee_id='
+     . $row['user_id'] . '">Like</a></td>
+    </tr>';
     }
     echo '</table>';
 }

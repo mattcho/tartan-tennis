@@ -34,7 +34,8 @@ CREATE TABLE `times` (
 
 ALTER TABLE `times`
   ADD FULLTEXT KEY `tag` (`tag`),
-  ADD KEY `created_at` (`created_at`);
+  ADD KEY `created_at` (`created_at`),
+  ADD KEY `user_id` (`user_id`);
 
 CREATE TABLE `friends` (
   `friend_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -50,13 +51,16 @@ CREATE TABLE `appointments` (
   `appointment_id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `poster_id` int(10) UNSIGNED NOT NULL,
   `responder_id` int(10) UNSIGNED NOT NULL,
-  `time_id` int(10) UNSIGNED NOT NULL,
-  `is_accepted` tinyint(1) NOT NULL
+  `time_id` int(11) UNSIGNED NOT NULL,
+  `message_id` int(11) UNSIGNED NOT NULL,
+  `is_accepted` boolean DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `appointments`
   ADD KEY `poster_id` (`poster_id`),
-  ADD KEY `responder_id` (`responder_id`);
+  ADD KEY `responder_id` (`responder_id`),
+  ADD KEY `time_id` (`time_id`),
+  ADD KEY `message_id` (`message_id`);
 
 CREATE TABLE `follows` (
   `follow_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,

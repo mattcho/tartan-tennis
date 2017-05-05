@@ -2,7 +2,7 @@
 <!-- show the friends of the user -->
 
 <?php
-
+$page_title = 'Some Frineds';
 
 require('mysqli_connect.php');
 
@@ -10,14 +10,14 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
 echo '<h3> My Friends List </h3> ';
 
-$all = "SELECT * FROM friends WHERE friender_id = {$_COOKIE['user_id']} OR friendee_id = {$_COOKIE['user_id']} LIMIT 15";
+$all = "SELECT * FROM friends WHERE friender_id = {$_COOKIE['user_id']} OR friendee_id = {$_COOKIE['user_id']} LIMIT 10";
 $ra = mysqli_query($dbc, $all);
 $num_friends = mysqli_num_rows($ra);
 
 if ($num_friends > 0) {
 					echo '<table class="table">
 							<tr>
-								<th>UserID</th>
+								<th>User ID</th>
 								<th>Name</th>
 							</tr>';
 					while ($row = mysqli_fetch_array($ra)) {
