@@ -24,18 +24,23 @@ ALTER TABLE `users`
   ADD KEY `created_at` (`created_at`),
   ADD KEY `updated_at` (`updated_at`);
 
+INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, `pass`, `created_at`, `updated_at`) VALUES (NULL, 'Freya', 'Yuan', 'fyuan', 'fyuan@email.com', SHA1('fyuan111'), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, `pass`, `created_at`, `updated_at`) VALUES (NULL, 'Matt', 'Cho', 'mcho', 'mcho@email.com', SHA1('mcho111'), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, `pass`, `created_at`, `updated_at`) VALUES (NULL, 'Xian', 'Hu', 'xhu', 'xhu@email.com', SHA1('xhu111'), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
 CREATE TABLE `times` (
   `time_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `begins_date` date NOT NULL,
-  `begins_time` time NOT NULL,
-  `ends_time` time NOT NULL,
+  `begins_date` varchar(20) NOT NULL,
+  `begins_time` varchar(20) NOT NULL,
+  `ends_time` varchar(20) NOT NULL,
   `tag` tinytext NOT NULL,
   `user_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FULLTEXT (begins_date, begins_time, ends_time, tag)
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `times`
-  ADD FULLTEXT KEY `tag` (`tag`),
   ADD KEY `created_at` (`created_at`),
   ADD KEY `user_id` (`user_id`);
 
