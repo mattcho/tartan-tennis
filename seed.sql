@@ -9,6 +9,7 @@ CREATE TABLE `users` (
   `user_id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
+  `username` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `pass` char(40) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -17,6 +18,7 @@ CREATE TABLE `users` (
 
 ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `username` (`username`),
   ADD KEY `first_name` (`first_name`),
   ADD KEY `last_name` (`last_name`),
   ADD KEY `created_at` (`created_at`),

@@ -2,27 +2,41 @@
 
 if (isset($_POST['submitted'])) {
 
-	require_once('includes/login_functions.php');
+	if (!isset($_POST['username'])) {
+		echo '<p class="error">You did not enter your username</p>';
+	} else {
+		$u = $_POST['username'];
+	}
+
+	if (!isset($_POST['pass'])) {
+		echo '<p class="error">You did not enter your password</p>';
+	} else {
+		$p = $_POST['pass'];
+	}
 
 	require_once('mysqli_connect.php');
 
-	list ($check, $data) = check_login($dbc, $_POST['email'], $_POST['pass']);
+	$q = "SELECT user_id, first_name FROM users WHERE (username='$u' OR email='$u') AND pass=SHA('$p')";
 
-	if ($check) {
+	$r = @mysqli_query($dbc, $q);
 
-		setcookie('user_id', $data['user_id']);
-		setcookie('first_name', $data['first_name']);
+	if (mysqli_num_rows($r) == 1) {
 
-		$url = absolute_url('index.php');
+		$row = mysqli_fetch_array($r, MYSQLI_ASSOC);
 
+		setcookie('user_id', $row['user_id']);
+		setcookie('first_name', $row['first_name']);
+		
+		$page = 'index.php';
+		$url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']);
+		$url = rtrim($url, '/\\');
+		$url .= '/' . $page;
+		
 		header("Location: $url");
-
 		exit();
 	} else {
-
-		$errors = $data;
+		echo 'No such user found.';
 	}
-
 	mysqli_close($dbc);
 }
 
@@ -35,7 +49,7 @@ include('includes/header.php');
 <div class="row">
 	<h1>Log In</h1>
 	<form action="login.php" method="post">
-		<p>Email Address: <input type="email" name="email" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
+		<p>Username: <input type="text" name="username" value="<?php if (isset($_POST['username'])) echo $_POST['username']; ?>" /></p>
 		<p>Password: <input type="password" name="pass" /></p>
 		<p><input type="submit" name="submit" value="Log In" /></p>
 		<input type="hidden" name="submitted" value="TRUE" />
