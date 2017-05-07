@@ -6,28 +6,37 @@
 $page_title = 'All available time';
 
 include ('includes/header.php');
+
 require('mysqli_connect.php');
 
 
 if(isset($_COOKIE['user_id']))
 {
 
-    $q = "SELECT time_id FROM times ";
+    if (isset($_POST['submitted'])) {
+
+        $search = mysqli_real_escape_string($dbc, $_POST['search']);
+
+        $q = "SELECT user_id, first_name, last_name, email, begins_date, begins_time, ends_time, tag
+            FROM users INNER JOIN times USING (user_id)
+            WHERE MATCH (begins_date, begins_time, ends_time, tag) AGAINST('$search' IN NATURAL LANGUAGE MODE)";
+    } else {
+        $q = "SELECT user_id, first_name, last_name, email, begins_date, begins_time, ends_time, tag
+            FROM users INNER JOIN times USING (user_id)";
+    }
+
     $r = @mysqli_query($dbc, $q);
     $num_times = mysqli_num_rows($r);
     echo '<h3>The available time slots from all users: ' . $num_times . '</h3>';
     echo '<h3>~~~~~~~~~~~~~~All the available time~~~~~~~~~~~~~~</h3>'; 
-    $qt =" SELECT user_id, first_name, last_name, email, begins_date, begins_time, ends_time, tag
-                    FROM users INNER JOIN times
-                    USING (user_id)
-                    WHERE user_id <> '$user_id'
-                    ";
 
-    $result = @mysqli_query($dbc, $qt);
-                    
-     // count the number of results
-    $num = mysqli_num_rows($result);
-
+    echo '<form action="alltime.php" method="post" class="navbar-form">
+            <div class="form-group">
+                <input name="search" type="text" class="form-control" placeholder="Search" />
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+            <input type="hidden" name="submitted" value="TRUE" />
+        </form>';
     echo '<table class="table">
     <tr>
     <th>Name</th>
@@ -42,7 +51,7 @@ if(isset($_COOKIE['user_id']))
     <th>Like this guy!</th>
     </tr>';
 
-while ($row = mysqli_fetch_array($result)) {
+while ($row = mysqli_fetch_array($r)) {
     echo
     '<tr>
     <td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>

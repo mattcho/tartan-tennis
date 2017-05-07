@@ -37,7 +37,6 @@ CREATE TABLE `times` (
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FULLTEXT (begins_date, begins_time, ends_time, tag)
-
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `times`
