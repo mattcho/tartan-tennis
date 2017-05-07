@@ -44,6 +44,9 @@ ALTER TABLE `times`
   ADD KEY `created_at` (`created_at`),
   ADD KEY `user_id` (`user_id`);
 
+INSERT INTO `times` (`time_id`, `begins_date`, `begins_time`, `ends_time`, `tag`, `user_id`, `created_at`) VALUES
+(1, '2017-05-09', '14:00', '15:00', 'I am a cool guy', 2, '2017-05-07 19:25:39'); 
+
 CREATE TABLE `friends` (
   `friend_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `friender_id` int(11) NOT NULL,
