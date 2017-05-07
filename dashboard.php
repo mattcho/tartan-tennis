@@ -6,6 +6,9 @@ include ('includes/header.php');
 
 $profile_id = $_GET['profile_id'];
 $user = $_GET['user'];
+if(isset($_COOKIE['user_id'])) {
+    $user = $_COOKIE['user_id'];
+}
 
 ?>
 
@@ -22,16 +25,37 @@ while($row = mysqli_fetch_array($r)) {
     echo '<h3>USER Name: ' . $row['first_name'] . ' ' . $row['last_name'] . '</h3>';
     echo '<h3>Email: ' . $row['email'] . '</h3>';
 
-    if($user == $profile_id) {
+    if($user != $profile_id) {
+        echo '<a class="btn btn-primary btn-sm" href="send_message.php?receiver_id='
+                            . $profile_id . '">Send Message</a>' . '              ' . 
+        '<a class="btn btn-primary btn-sm" href="friend_request.php?receiver_id='
+                            . $profile_id . '">Add friend</a>';        
         echo '<h3><a class="btn btn-primary btn-sm" 
         href="index.php">Go Back</a> </h3> ';
 
     } else {
-        echo '<a class="btn btn-primary btn-sm" href="send_message.php?receiver_id='
-                            . $profile_id . '">Send Message</a>' . '              ' . 
-        '<a class="btn btn-primary btn-sm" href="friend_request.php?receiver_id='
-                            . $profile_id . '">Add friend</a>';
+        echo '<h3><a class="btn btn-primary btn-sm" 
+                href="index.php">Go Back</a> </h3> ';
+        echo "<br>";
+        echo "<br>";
+               
+        $tagq = "SELECT DISTINCT tag FROM times WHERE user_id = {$user}";
+        $tagr = mysqli_query($dbc, $tagq);
+        $tagnum = mysqli_num_rows($tagr);
+        if($tagnum > 0) {
+            echo '<h3>Tags Made</h3>';
+        }
+        echo '<table class="table">';
+        while($tagrow = mysqli_fetch_array($tagr)) {
+                    echo
+                    '<tr>
+                    <td>' . $tagrow['tag'] . '</td>
+                    <td>' . '<a class="btn btn-primary btn-sm" href="tag_time.php?tag='
+                            . $tagrow['tag'] . '">See All</a>' . '</td>
+                    </tr>';
 
+        }                               
+        echo '</table>';
     }
 }
 
