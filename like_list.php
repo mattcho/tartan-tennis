@@ -31,7 +31,7 @@ if(isset($_COOKIE['user_id']))
             <th>' . $row['likee_id'] . '</th>
             <th>' . $row2['first_name'] . ' ' . $row2['last_name'] . '</th>
             <th>' . $row2['email'] . '</th>
-            <td><a class="btn btn-primary btn-sm" href="profile.php?profile_id='
+            <td><a class="btn btn-primary btn-sm" href="dashboard.php?profile_id='
                             . $row['likee_id'] . '">Visit</a></td>
             <td><a class="btn btn-primary btn-sm" href="send_message.php?receiver_id='
                             . $row['likee_id'] . '">Send</a></td>                
