@@ -1,12 +1,25 @@
 <?php
 
-echo '<h4>Empty States, Expandable Inputs, Stats/Dashboard</h4>';
+$is_loggedin = isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id']);
 
-if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
+if (isset($_COOKIE['first_name'])) {
+	$fn = $_COOKIE['first_name'];
+	$id = $_COOKIE['user_id'];	
+}
+
+
+echo '<h4 class="patterns">Empty States, Expandable Inputs, Stats/Dashboard</h4>';
+
+if (!$is_loggedin) {
+	$q = "SELECT user_id FROM users";
+	$r = @mysqli_query($dbc, $q);
+	$num_users = mysqli_num_rows($r);
+	echo '<p>Hi, there. We have ' . $num_users . ' users in our platform. Please sign up or log in.</p>';
+} else {
 	$q = "SELECT user_id FROM users WHERE user_id <> {$_COOKIE['user_id']}";
 	$r = @mysqli_query($dbc, $q);
 	$num_users = mysqli_num_rows($r);
-	echo '<p>The current number of users: ' . $num_users . '</p>';
+	echo '<p>Hi, ' . $fn . '. We have ' . $num_users . ' users in our platform. Find your partner!</p>';
 
 	$q = "SELECT time_id FROM times
 	WHERE user_id <> {$_COOKIE['user_id']}
@@ -19,14 +32,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 	} else {
 		echo '<p>Currently, no available time slots waiting for you.</p>';
 		echo '<p>Add your own available time and wait!</p>';
-	}
-	
-} else {
-	echo "else";
-	$q = "SELECT user_id FROM users";
-	$r = @mysqli_query($dbc, $q);
-	$num_users = mysqli_num_rows($r);
-	echo '<h3>The current number of users: ' . $num_users . '</h3>';
+	}	
 }
 
 ?>
@@ -45,11 +51,79 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 <?php
 
 echo '<hr />';
-echo '<h4>Related Content</h4>';
+echo '<h4 class="patterns">Action Context</h4>';
+echo '<h4>Your Matches</h4>';
+
+
+if (!$is_loggedin) {
+	echo '<p>You can find your matches after logging in!</p>';
+} else {
+	if (!isset($_POST['submitted'])) {
+		echo '<p>You can find your matches once you input your availability above.</p>';
+		
+	} else {
+		$q = "SELECT user_id, first_name, last_name, email, begins_date, begins_time, ends_time, tag, time_id
+FROM users INNER JOIN times USING (user_id)
+WHERE user_id <> '$user_id' AND begins_date = '$bd' AND begins_time = '$bt'";
+		$r = @mysqli_query($dbc, $q);
+		echo '<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Date</th>
+				<th>Begins</th>
+				<th>Ends</th>
+				<th>Tag</th>
+				<th>Dashboard</th>
+				<th>Friend Request</th>
+				<th>Match Request</th>
+				<th>Like this guy!</th>
+			</tr>';
+
+		while ($row = mysqli_fetch_array($r)) {
+			$likeq = "SELECT * FROM likes WHERE likee_id = {$row['user_id']}";
+			$liker = mysqli_query($dbc, $likeq);
+			$num_like = mysqli_num_rows($liker);
+			echo
+			'<tr>
+				<td>' . $row['first_name'] . ' ' . $row['last_name'] . '</td>
+				<td>' . $row['email'] . '</td>
+				<td>' . $row['begins_date'] . '</td>
+				<td>' . $row['begins_time'] . '</td>
+				<td>' . $row['ends_time'] . '</td>
+				<td>' . $row['tag'] . '</td>
+				<td><a class="btn btn-primary btn-sm"
+				a href="dashboard.php?profile_id='
+				. $row['user_id'] . '& user='. $_COOKIE['user_id'] . '">Dashboard</a></td>
+
+				<td><a class="btn btn-primary btn-sm" href="friend_request.php?receiver_id='
+				. $row['user_id'] . '">Let\'s know</a></td>
+
+				<td><a class="btn btn-primary btn-sm" href="appoinment_request.php?receiver_id='
+				. $row['user_id'] . '& time_id='. $row['time_id'] . '& begins_date='. $row['begins_date'] . '& begins_time=' . $row['begins_time'] . '& ends_time=' . $row['ends_time'] . '">Let\'s play</a></td>
+
+				<td><a class="btn btn-primary btn-sm" href="like.php?likee_id='
+				. $row['user_id'] . '">Like</a>' . $num_like . '</td>
+			</tr>';
+		}
+
+		echo '</table>';
+	}
+	
+
+}
+
+
+
+?>
+
+<?php
+
+echo '<hr />';
+echo '<h4 class="patterns">Related Content</h4>';
 echo '<p>Other people might like the posting like the following:</p>';
 
-// SELECT all the time_id that led to actual appointments
-// Suggest begins_time
+// Suggest top 3 popular days, begins, ends and tags.
 
 $q = "SELECT begins_time FROM times JOIN appointments USING (time_id)";
 $r = @mysqli_query($dbc, $q);
@@ -59,7 +133,7 @@ echo '<table class="table">
 			<th>Day</th>
 			<th>Begins</th>
 			<th>Ends</th>
-			<th>Tags</th>
+			<th>Tag</th>
 		</tr>';
 while ($row = mysqli_fetch_array($r)) {
 
