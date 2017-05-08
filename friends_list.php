@@ -14,7 +14,7 @@ if(isset($_COOKIE['user_id']))
 	INNER JOIN (SELECT *, SUM(private_like) as likenum, SUM(bad_like) as badlikenum
 	FROM likes
 	GROUP BY likee_id) AS alllikes ON likee_id=user_id
-    WHERE friendee_id={$_COOKIE['user_id']}";
+    WHERE friendee_id={$_COOKIE['user_id']} OR friender_id = {$_COOKIE['user_id']}";
 
 
     $rs = mysqli_query($dbc, $q);
