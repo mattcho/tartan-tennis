@@ -163,41 +163,45 @@ WHERE user_id <> '$user_id' AND begins_date = '$bd' AND begins_time = '$bt'";
 
 echo '<hr />';
 echo '<h4 class="patterns">Related Content</h4>';
-echo '<p>Other people might like the posting like the following:</p>';
+echo '<p>People made successful appointments on days as follows:</p>';
 
 // Suggest top 3 popular days, begins, ends and tags.
 
-$q = "SELECT   DAYNAME(beings_date), COUNT(DAYNAME(begins_date)) AS `occurence`
-    FROM     times JOIN appointments USING (time_id)
-    GROUP BY DAYNAME(beings_date)
-    ORDER BY `occurrence` DESC
-    LIMIT    1;";
-
+$q = "SELECT DAYNAME(begins_date) AS day FROM times JOIN appointments USING (time_id)";
 $r = @mysqli_query($dbc, $q);
 
-var_dump($r);
+$mon = 0;
+$tue = 0;
+$wed = 0;
+$thu = 0;
+$fri = 0;
+$sat = 0;
+$sun = 0;
 
-// echo '<table class="table">
-// 		<tr>
-// 			<th>Day</th>
-// 			<th>Begins</th>
-// 			<th>Ends</th>
-// 			<th>Tag</th>
-// 		</tr>';
-// while ($row = mysqli_fetch_array($r)) {
+while ($row = mysqli_fetch_array($r)) {
+	if ($row['day'] = 'Monday') {
+		$mon++;
+	} else if ($row['day'] = 'Tuesday') {
+		$tue++;
+	} else if ($row['day'] = 'Wednesday') {
+		$wed++;
+	} else if ($row['day'] = 'Thursday') {
+		$thu++;
+	} else if ($row['day'] = 'Friday') {
+		$fri++;
+	} else if ($row['day'] = 'Saturday') {
+		$sat++;
+	} else if ($row['day'] = 'Sunday') {
+		$sun++;
+	}
+}
 
-// 	// Date to Day conversion
-// 	$date = $row['begins_date'];
-// 	$time = strtotime(date);
-// 	$day = date("D", $time);
-
-// 	echo '<tr>
-// 			<td>' . $day . '</td>
-// 			<td>' . $row['begins_time'] . '</td>
-// 			<td>' . $row['ends_time'] . '</td>
-// 			<td>' . $row['tag'] . '</td>
-// 		</tr>';
-// }
-// echo '</table>';
+echo '<p>Monday: ' . $mon . '</p>';
+echo '<p>Tuesday: ' . $tue . '</p>';
+echo '<p>Wednesday: ' . $wed . '</p>';
+echo '<p>Thursday: ' . $thu . '</p>';
+echo '<p>Friday: ' . $fri . '</p>';
+echo '<p>Saturday: ' . $sat . '</p>';
+echo '<p>Sunday: ' . $sun . '</p>';
 
 ?>
