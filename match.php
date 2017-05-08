@@ -15,7 +15,7 @@ if (!$is_loggedin) {
 	$r = @mysqli_query($dbc, $q);
 	$num_users = mysqli_num_rows($r);
 	echo '<p>Hi, there. We have ' . $num_users . ' users in our platform. Please sign up or log in.</p>';
-	echo '<p>For those who are lazy, try this! username: john@email.com password: 1234567</p>';
+	echo '<p>For those who are lazy, try username: john@email.com password: 1234567</p>';
 } else {
 	$q = "SELECT user_id FROM users WHERE user_id <> {$_COOKIE['user_id']}";
 	$r = @mysqli_query($dbc, $q);
@@ -175,30 +175,37 @@ echo '<p>Other people might like the posting like the following:</p>';
 
 // Suggest top 3 popular days, begins, ends and tags.
 
-$q = "SELECT begins_time FROM times JOIN appointments USING (time_id)";
+$q = "SELECT   DAYNAME(beings_date), COUNT(DAYNAME(begins_date)) AS `occurence`
+    FROM     times JOIN appointments USING (time_id)
+    GROUP BY DAYNAME(beings_date)
+    ORDER BY `occurrence` DESC
+    LIMIT    1;";
+
 $r = @mysqli_query($dbc, $q);
 
-echo '<table class="table">
-		<tr>
-			<th>Day</th>
-			<th>Begins</th>
-			<th>Ends</th>
-			<th>Tag</th>
-		</tr>';
-while ($row = mysqli_fetch_array($r)) {
+var_dump($r);
 
-	// Date to Day conversion
-	$date = $row['begins_date'];
-	$time = strtotime(date);
-	$day = date("D", $time);
+// echo '<table class="table">
+// 		<tr>
+// 			<th>Day</th>
+// 			<th>Begins</th>
+// 			<th>Ends</th>
+// 			<th>Tag</th>
+// 		</tr>';
+// while ($row = mysqli_fetch_array($r)) {
 
-	echo '<tr>
-			<td>' . $day . '</td>
-			<td>' . $row['begins_time'] . '</td>
-			<td>' . $row['ends_time'] . '</td>
-			<td>' . $row['tag'] . '</td>
-		</tr>';
-}
-echo '</table>';
+// 	// Date to Day conversion
+// 	$date = $row['begins_date'];
+// 	$time = strtotime(date);
+// 	$day = date("D", $time);
+
+// 	echo '<tr>
+// 			<td>' . $day . '</td>
+// 			<td>' . $row['begins_time'] . '</td>
+// 			<td>' . $row['ends_time'] . '</td>
+// 			<td>' . $row['tag'] . '</td>
+// 		</tr>';
+// }
+// echo '</table>';
 
 ?>
