@@ -22,19 +22,23 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require('mysqli_connect.php');
+$is_loggedin = isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id']);
 
-$q = "SELECT message_id FROM messages WHERE receiver_id={$_COOKIE['user_id']} AND is_read = 0";
+if (isset($_COOKIE['first_name'])) {
+	$fn = $_COOKIE['first_name'];
+	$user_id = $_COOKIE['user_id'];	
+}
 
-$r = @mysqli_query($dbc, $q);
-
-$num = mysqli_num_rows($r);
-
-if (isset($_COOKIE['user_id']) AND isset($_COOKIE['first_name'])) {
-	echo "<li><a href='index.php'>Hi, " . $_COOKIE['first_name'] . "</a></li>";
+if ($is_loggedin) {
+	echo "<li><a href='index.php'>Hi, " . $fn . "</a></li>";
 	echo "<li><a href='activities.php'>My Activities</a></li>";
-	echo '<li><a href="dashboard.php?profile_id='
-							. $_COOKIE['user_id'] . '">Dashboard</a></li> ';
+	echo '<li><a href="dashboard.php?profile_id=' . $user_id . '">Dashboard</a></li> ';
+
+	require('mysqli_connect.php');
+	$q = "SELECT message_id FROM messages WHERE receiver_id='$user_id' AND is_read = 0";
+	$r = @mysqli_query($dbc, $q);
+	$num = mysqli_num_rows($r);
+
 	if($num > 0) {
 		echo "<li><a href='message.php'>New Message ($num)</a></li>";
 	} else {

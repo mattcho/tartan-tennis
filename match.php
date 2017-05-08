@@ -1,13 +1,5 @@
 <?php
 
-$is_loggedin = isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id']);
-
-if (isset($_COOKIE['first_name'])) {
-	$fn = $_COOKIE['first_name'];
-	$user_id = $_COOKIE['user_id'];	
-}
-
-
 echo '<h4 class="patterns">Empty States, Expandable Inputs, Stats/Dashboard</h4>';
 
 if (!$is_loggedin) {
