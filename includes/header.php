@@ -19,6 +19,9 @@
     <ul class="nav navbar-nav navbar-right">
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 require('mysqli_connect.php');
 
 $q = "SELECT message_id FROM messages WHERE receiver_id={$_COOKIE['user_id']} AND is_read = 0";

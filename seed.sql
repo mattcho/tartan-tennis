@@ -24,9 +24,9 @@ ALTER TABLE `users`
   ADD KEY `created_at` (`created_at`),
   ADD KEY `updated_at` (`updated_at`);
 
-INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, `pass`, `created_at`, `updated_at`) VALUES (NULL, 'Freya', 'Yuan', 'fyuan', 'fyuan@email.com', SHA1('fyuan111'), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, `pass`, `created_at`, `updated_at`) VALUES (NULL, 'Matt', 'Cho', 'mcho', 'mcho@email.com', SHA1('mcho111'), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, `pass`, `created_at`, `updated_at`) VALUES (NULL, 'Xian', 'Hu', 'xhu', 'xhu@email.com', SHA1('xhu111'), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, `pass`, `created_at`, `updated_at`) VALUES (NULL, 'Freya', 'Yuan', 'fyuan', 'fyuan@email.com', SHA1('123'), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, `pass`, `created_at`, `updated_at`) VALUES (NULL, 'Matt', 'Cho', 'mcho', 'mcho@email.com', SHA1('123'), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `username`, `email`, `pass`, `created_at`, `updated_at`) VALUES (NULL, 'Xian', 'Hu', 'xhu', 'xhu@email.com', SHA1('123'), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 CREATE TABLE `times` (
   `time_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
