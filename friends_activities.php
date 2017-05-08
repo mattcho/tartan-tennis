@@ -4,8 +4,6 @@
 <?php
 
 $page_title = 'Friends Activity List';
-require('mysqli_connect.php');
-include ('includes/header.php');
 
 if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
