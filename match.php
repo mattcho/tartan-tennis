@@ -12,7 +12,7 @@ if (!$is_loggedin) {
 	$q = "SELECT user_id FROM users WHERE user_id <> {$_COOKIE['user_id']}";
 	$r = @mysqli_query($dbc, $q);
 	$num_users = mysqli_num_rows($r);
-	echo '<p>Hi, ' . $fn . '. We have ' . $num_users . ' users in our platform. Find your partner!</p>';
+	echo '<p>Hi, ' . $fn . '. You have ' . $num_users . ' other users in our platform. Find your partner!</p>';
 
 	$q = "SELECT time_id FROM times
 	WHERE user_id <> {$_COOKIE['user_id']}
