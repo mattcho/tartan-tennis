@@ -19,8 +19,8 @@
     <ul class="nav navbar-nav navbar-right">
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 require('mysqli_connect.php');
 
@@ -35,6 +35,7 @@ if ($is_loggedin) {
 	echo "<li><a href='index.php'>Hi, " . $fn . "</a></li>";
 	echo "<li><a href='activities.php'>My Activities</a></li>";
 	echo '<li><a href="dashboard.php?profile_id=' . $user_id . '">Dashboard</a></li> ';
+	echo '<li><a href="alltime.php">Available Time Slots</a></li> ';
 
 	$q = "SELECT message_id FROM messages WHERE receiver_id='$user_id' AND is_read = 0";
 	$r = @mysqli_query($dbc, $q);

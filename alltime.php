@@ -7,9 +7,6 @@ $page_title = 'All available time';
 
 include ('includes/header.php');
 
-require('mysqli_connect.php');
-
-
 if(isset($_COOKIE['user_id']))
 {
 
@@ -19,16 +16,17 @@ if(isset($_COOKIE['user_id']))
 
         $q = "SELECT user_id, first_name, last_name, email, begins_date, begins_time, ends_time, tag
             FROM users INNER JOIN times USING (user_id)
-            WHERE MATCH (begins_date, begins_time, ends_time, tag) AGAINST('$search' IN NATURAL LANGUAGE MODE)";
+            WHERE MATCH (begins_date, begins_time, ends_time, tag) AGAINST('$search' IN NATURAL LANGUAGE MODE)
+            AND begins_date >= NOW()";
     } else {
         $q = "SELECT user_id, first_name, last_name, email, begins_date, begins_time, ends_time, tag
-            FROM users INNER JOIN times USING (user_id)";
+            FROM users INNER JOIN times USING (user_id)
+            WHERE begins_date >= NOW()";
     }
 
     $r = @mysqli_query($dbc, $q);
     $num_times = mysqli_num_rows($r);
     echo '<h3>The available time slots from all users: ' . $num_times . '</h3>';
-    echo '<h3>~~~~~~~~~~~~~~All the available time~~~~~~~~~~~~~~</h3>'; 
 
     echo '<form action="alltime.php" method="post" class="navbar-form">
             <div class="form-group">
