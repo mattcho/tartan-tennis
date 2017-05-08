@@ -5,8 +5,6 @@
 
 $page_title = 'Friends Activity List';
 
-include ('includes/header.php');
-
 if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
 echo '<h3>~~~~~~~~~~~Your Frineds Recent Activities~~~~~~~~~~~</h3> ';
