@@ -44,7 +44,24 @@ ALTER TABLE `times`
   ADD KEY `user_id` (`user_id`);
 
 INSERT INTO `times` (`time_id`, `begins_date`, `begins_time`, `ends_time`, `tag`, `user_id`, `created_at`) VALUES
-(1, '2017-05-09', '14:00', '15:00', 'I am a cool guy', 2, '2017-05-07 19:25:39'); 
+(2, '2017-05-09', '14:00', '15:00', 'I am a cool guy', 1, CURRENT_TIMESTAMP); 
+INSERT INTO `times` (`time_id`, `begins_date`, `begins_time`, `ends_time`, `tag`, `user_id`, `created_at`) VALUES
+(1, '2017-05-09', '14:00', '15:00', 'I am a cool guy', 2, CURRENT_TIMESTAMP); 
+INSERT INTO `times` (`time_id`, `begins_date`, `begins_time`, `ends_time`, `tag`, `user_id`, `created_at`) VALUES
+(3, '2017-05-09', '14:00', '15:00', 'I am a cool guy', 3, CURRENT_TIMESTAMP); 
+INSERT INTO `times` (`time_id`, `begins_date`, `begins_time`, `ends_time`, `tag`, `user_id`, `created_at`) VALUES
+(4, '2017-05-08', '16:00', '18:00', 'I am a cool guy', 3, CURRENT_TIMESTAMP); 
+INSERT INTO `times` (`time_id`, `begins_date`, `begins_time`, `ends_time`, `tag`, `user_id`, `created_at`) VALUES
+(5, '2017-05-08', '16:00', '18:00', 'I am a cool guy', 2, CURRENT_TIMESTAMP); 
+INSERT INTO `times` (`time_id`, `begins_date`, `begins_time`, `ends_time`, `tag`, `user_id`, `created_at`) VALUES
+(6, '2017-05-07', '14:00', '15:00', 'I am a cool guy', 1, CURRENT_TIMESTAMP); 
+INSERT INTO `times` (`time_id`, `begins_date`, `begins_time`, `ends_time`, `tag`, `user_id`, `created_at`) VALUES
+(7, '2017-05-07', '14:00', '15:00', 'I am a cool guy', 2, CURRENT_TIMESTAMP); 
+INSERT INTO `times` (`time_id`, `begins_date`, `begins_time`, `ends_time`, `tag`, `user_id`, `created_at`) VALUES
+(8, '2017-05-01', '14:00', '15:00', 'I am a cool guy', 1, CURRENT_TIMESTAMP); 
+INSERT INTO `times` (`time_id`, `begins_date`, `begins_time`, `ends_time`, `tag`, `user_id`, `created_at`) VALUES
+(9, '2017-05-01', '14:00', '15:00', 'I am a cool guy', 2, CURRENT_TIMESTAMP); 
+
 
 CREATE TABLE `friends` (
   `friend_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -55,6 +72,11 @@ CREATE TABLE `friends` (
 ALTER TABLE `friends`
   ADD KEY `friender` (`friender_id`),
   ADD KEY `friendee` (`friendee_id`);
+
+
+INSERT INTO `friends` (`friend_id`, `friender_id`, `friendee_id`) VALUES (1,1,2);
+INSERT INTO `friends` (`friend_id`, `friender_id`, `friendee_id`) VALUES (2,1,3);
+INSERT INTO `friends` (`friend_id`, `friender_id`, `friendee_id`) VALUES (3,2,3);
 
 CREATE TABLE `appointments` (
   `appointment_id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -96,6 +118,14 @@ ALTER TABLE `likes`
   ADD KEY `private_like` (`private_like`),
   ADD KEY `liker_id` (`liker_id`),
   ADD KEY `likee_id` (`likee_id`);
+
+INSERT INTO `likes` (`like_id`, `bad_like`, `public_like`,`private_like`,`liker_id`,`likee_id`) VALUES (1,1,0,0,1,2);
+INSERT INTO `likes` (`like_id`, `bad_like`, `public_like`,`private_like`,`liker_id`,`likee_id`) VALUES (2,0,0,1,2,1);
+INSERT INTO `likes` (`like_id`, `bad_like`, `public_like`,`private_like`,`liker_id`,`likee_id`) VALUES (3,1,0,0,3,2);
+INSERT INTO `likes` (`like_id`, `bad_like`, `public_like`,`private_like`,`liker_id`,`likee_id`) VALUES (4,0,1,0,3,1);
+INSERT INTO `likes` (`like_id`, `bad_like`, `public_like`,`private_like`,`liker_id`,`likee_id`) VALUES (5,0,1,0,2,3);
+INSERT INTO `likes` (`like_id`, `bad_like`, `public_like`,`private_like`,`liker_id`,`likee_id`) VALUES (6,1,0,0,1,3);
+INSERT INTO `likes` (`like_id`, `bad_like`, `public_like`,`private_like`,`liker_id`,`likee_id`) VALUES (7,2,0,0,2,1);
 
 CREATE TABLE `messages` (
   `message_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
