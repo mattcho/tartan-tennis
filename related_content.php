@@ -3,7 +3,9 @@
 if ($is_loggedin) {
 
 	echo '<h4 class="patterns">Related Content</h4>';
-	echo '<p>Most popular days. People made successful appointments on days as follows:</p>';
+	echo '<p>People made successful appointments on days/times as follows:</p>';
+
+	echo '<h5>Popular Days</h5>';
 
 	$q = "SELECT DAYNAME(begins_date) AS day FROM times JOIN appointments USING (time_id)";
 	$r = @mysqli_query($dbc, $q);
@@ -43,6 +45,37 @@ if ($is_loggedin) {
 	    echo key($days)." (".$element."),\n";
 	    next($days);
 	}
+
+	echo '<br />';
+
+	echo '<h5>Popular Times</h5>';
+
+	$q = "SELECT begins_time FROM times JOIN appointments USING (time_id)";
+	$r = @mysqli_query($dbc, $q);
+
+	$times = array();
+
+	while ($row = mysqli_fetch_array($r)) {
+		array_push($times, $row['begins_time']);
+	}
+
+	$frequency = array_count_values($times);
+
+	arsort($frequency);
+
+	foreach($frequency as $key => $value) {
+		echo $key . ' (' . $value . '), ';
+
+	}
+
+	
+
+
+	// end($result);
+	// $answer = key($result);
+
+	// echo $answer;
+
 }
 
 ?>
