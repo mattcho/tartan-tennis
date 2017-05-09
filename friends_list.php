@@ -12,25 +12,40 @@ echo '<form action="friends_list.php" method="post">';
 
 if (isset($_POST['friend_id'])) {
 
-    var_dump($_POST);
+    $friend_id = $_POST['friend_id'];
 
-        echo $_POST["friendee_group"];
-        echo $_POST["friender_group"];
+    $friendee_group = $_POST["friendee_group"];
 
-        // if (isset($_POST['group'])) {
-        //     $q = "UPDATE friends
-        //     SET friendee_group = {$_POST['group']}
-        //     WHERE friend_id={$_POST['friend_id']}";
-        // }
-        // $r = mysqli_query($dbc, $q);
-        // $num = mysqli_num_rows($r);
-        // if ($num == 1) {
-        //     echo 'Your friends has been successfully added to the group!';
-        // } else {
-        //     echo 'Try again';
-        // }
-        
+    $friender_group = $_POST["friender_group"];
+
+    if (isset($_POST["friendee_group"])) {
+
+        $q = "UPDATE friends
+        SET friendee_group = '$friendee_group'
+        WHERE friend_id=$friend_id";
+
+        mysqli_query($dbc, $q);
+
+        if (mysqli_affected_rows($dbc) == 1) {
+            echo "Your friend has been successfully added to the group!";
+        } else {
+            echo "Your friend has not been added to the group!";
+        }
+    } else if (isset($_POST["friender_group"])) {
+        $q = "UPDATE friends
+        SET friender_group = '$friender_group'
+        WHERE friend_id=$friend_id";
+
+        mysqli_query($dbc, $q);
+
+        if (mysqli_affected_rows($dbc) == 1) {
+            echo "Your friend has been successfully added to the group!";
+        } else {
+            echo "Your friend has not been added to the group!";
+        }
     }
+
+}
 
 if(isset($_COOKIE['user_id']) AND isset($_COOKIE['user_id']))
 {
@@ -158,6 +173,18 @@ if ($num_friends > 0) {
     // } else
     // {
     //     echo 'You must be logged to access this page.';
-    }         
+    }
+
+echo '<h2>My Groups</h2>';
+
+$q = "SELECT friender_group, friendee_group FROM friends WHERE friendee_id = $user_id OR friender_id = $user_id";
+$r = mysqli_query($dbc, $q);
+while ($row = mysqli_fetch_array($r)) {
+    echo $row['friender_group'];
+    echo $row['friendee_group'];
+}
+
+
+
 include ('includes/footer.html');
 ?>

@@ -35,7 +35,9 @@ INSERT INTO `users` (`first_name`, `last_name`, `username`, `email`, `pass`) VAL
 CREATE TABLE `friends` (
   `friend_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `friender_id` int(11) NOT NULL,
-  `friendee_id` int(11) NOT NULL
+  `friendee_id` int(11) NOT NULL,
+  `friender_group` varchar(50),
+  `friendee_group` varchar(50)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `friends`
