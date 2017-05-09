@@ -8,7 +8,7 @@ include ('includes/header.php');
 
 if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
-echo '<h3> My Activity List </h3> ';
+echo '<h3> My History Activity List </h3> ';
 
 
 $all="SELECT * 
@@ -19,7 +19,7 @@ $ra = mysqli_query($dbc, $all);
 $num_activities = mysqli_num_rows($ra);
 
 if ($num_activities > 0) {
-	echo '<h3>You have ' . $num_activities . ' appointments now! </h3>'; 
+	echo '<h3>You have played ' . $num_activities . ' times now! </h3>'; 
 					echo '<table class="table">
 							<tr>
 								<th>PartnerID</th>
