@@ -8,16 +8,9 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id']))
 {
 	echo '<h4 class="patterns">Activity Feeds</h4> ';
 
-<<<<<<< HEAD
 		$all = "SELECT * FROM friends WHERE friender_id = {$_COOKIE['user_id']} OR friendee_id = {$_COOKIE['user_id']}";
 		$ra = mysqli_query($dbc, $all);
 		$num_friends = mysqli_num_rows($ra);
-=======
-$all = "SELECT * FROM friends WHERE friender_id = {$_COOKIE['user_id']} OR friendee_id = {$_COOKIE['user_id']}";
-$ra = mysqli_query($dbc, $all);
-$row = mysqli_fetch_array($ra);
-$num_friends = mysqli_num_rows($ra);
->>>>>>> 9791f54ff7f6b9fb110ec0b057910f7a555703b6
 
 	if ($num_friends > 0) {
 		while ($row = mysqli_fetch_array($ra)) {
