@@ -28,7 +28,7 @@ ALTER TABLE `users`
 INSERT INTO `users` (`first_name`, `last_name`, `username`, `email`, `pass`) VALUES ('Matt', 'Cho', 'mattc', 'mattc@email.com', SHA1('123'));
 INSERT INTO `users` (`first_name`, `last_name`, `username`, `email`, `pass`) VALUES ('Xian', 'Hu', 'xianh', 'xianh@email.com', SHA1('123'));
 INSERT INTO `users` (`first_name`, `last_name`, `username`, `email`, `pass`) VALUES ('Freya', 'Yuan', 'freyay', 'freyay@email.com', SHA1('123'));
-INSERT INTO `users` (`first_name`, `last_name`, `username`, `email`, `pass`) VALUES ('Michael', 'Bigrigg', 'mikeb', 'mikebfyuan@email.com', SHA1('123'));
+INSERT INTO `users` (`first_name`, `last_name`, `username`, `email`, `pass`) VALUES ('Michael', 'Bigrigg', 'mikeb', 'mikeb@email.com', SHA1('123'));
 INSERT INTO `users` (`first_name`, `last_name`, `username`, `email`, `pass`) VALUES ('John', 'Doe', 'johnd', 'johnd@email.com', SHA1('123'));
 
 

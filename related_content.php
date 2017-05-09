@@ -5,7 +5,7 @@ if ($is_loggedin) {
 	echo '<h4 class="patterns">Related Content</h4>';
 	echo '<p>People made successful appointments on days/times as follows:</p>';
 
-	echo '<h5>Popular Days</h5>';
+	echo '<h5>Popular Days People Like</h5>';
 
 	$q = "SELECT DAYNAME(begins_date) AS day FROM times JOIN appointments USING (time_id)";
 	$r = @mysqli_query($dbc, $q);
@@ -48,7 +48,7 @@ if ($is_loggedin) {
 
 	echo '<br />';
 
-	echo '<h5>Popular Times</h5>';
+	echo '<h5>Popular Times People Like</h5>';
 
 	$q = "SELECT begins_time FROM times JOIN appointments USING (time_id)";
 	$r = @mysqli_query($dbc, $q);
