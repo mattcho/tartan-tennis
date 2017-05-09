@@ -6,7 +6,7 @@ $page_title = 'Activity feeds';
 
 if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
-echo '<h3> My Friends\' Activities </h3> ';
+echo '<h4 class="patterns">Activity Feeds</h4> ';
 
 $all = "SELECT * FROM friends WHERE friender_id = {$_COOKIE['user_id']} OR friendee_id = {$_COOKIE['user_id']} LIMIT 10";
 $ra = mysqli_query($dbc, $all);
@@ -48,12 +48,12 @@ if ($num_friends > 0) {
 							$row2=mysqli_fetch_array($ra2);
 
 					        $q2 = "SELECT first_name, last_name FROM users WHERE user_id = {$row2['responder_id']}";
-					        $r2 = mysqli_query($dbc, $q2);
-					        $subr2 = mysqli_fetch_array($r2);
+					        $r2 = @mysqli_query($dbc, $q2);
+					        $subr2 = @mysqli_fetch_array($r2);
 
 					        $q3 = "SELECT first_name, last_name FROM users WHERE user_id = {$row2['poster_id']}";
-					        $r3 = mysqli_query($dbc, $q3);
-					        $subr3 = mysqli_fetch_array($r3);
+					        $r3 = @mysqli_query($dbc, $q3);
+					        $subr3 = @mysqli_fetch_array($r3);
 
 						if($row['friender_id'] == $_COOKIE['user_id']){
 							if ($row2['poster_id'] == $row['friendee_id']) {

@@ -13,8 +13,10 @@ include ('includes/header.php');
 	<?php include ('related_content.php'); ?> 
   </div>
   <div class="col-md-6">
-  	<?php include ('recommendations.php'); ?> 
+  	<?php include ('recommendations.php'); ?>
+  	<hr />
   	<?php include ('personal.php'); ?> 
+  	<hr />
 	<?php include ('activity_feeds.php'); ?>
   </div>
 </div>

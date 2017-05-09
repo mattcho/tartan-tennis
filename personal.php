@@ -6,7 +6,7 @@ $page_title = 'Some Frineds';
 
 if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
-echo '<h3> My Friends List </h3> ';
+echo '<h4 class="patterns">Friends List</h4> ';
 
 $all = "SELECT * FROM friends WHERE friender_id = {$_COOKIE['user_id']} OR friendee_id = {$_COOKIE['user_id']} LIMIT 10";
 $ra = mysqli_query($dbc, $all);
