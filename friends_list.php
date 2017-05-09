@@ -177,11 +177,32 @@ if ($num_friends > 0) {
 
 echo '<h2>My Groups</h2>';
 
-$q = "SELECT friender_group, friendee_group FROM friends WHERE friendee_id = $user_id OR friender_id = $user_id";
+$q = "SELECT friender_id, friender_group, first_name, last_name FROM friends
+INNER JOIN users ON friends.friender_id = users.user_id
+WHERE friendee_id=$user_id";
+
 $r = mysqli_query($dbc, $q);
-while ($row = mysqli_fetch_array($r)) {
-    echo $row['friender_group'];
-    echo $row['friendee_group'];
+
+if (!$r) {
+    
+} else {
+    while ($row = mysqli_fetch_array($r)) {
+        echo '<p>' . $row['friender_group'] . ': ' . $row['first_name'] . '</p>';
+    }
+}
+
+$q = "SELECT friendee_id, friendee_group, first_name, last_name FROM friends
+INNER JOIN users ON friends.friendee_id = users.user_id
+WHERE friender_id=$user_id";
+
+$r = mysqli_query($dbc, $q);
+
+if (!$r) {
+
+} else {
+    while ($row = mysqli_fetch_array($r)) {
+        echo '<p>' . $row['friendee_group'] . ': ' . $row['first_name'] . '</p>';
+    }
 }
 
 
