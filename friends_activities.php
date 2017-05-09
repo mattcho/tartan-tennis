@@ -7,8 +7,8 @@ $page_title = 'Friends Activity List';
 
 include ('includes/header.php');
 
-if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
-
+if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) 
+{
 echo '<h3>~~~~~~~~~~~Your Frineds Recent Activities~~~~~~~~~~~</h3> ';
 
 $all = "SELECT * FROM friends WHERE friender_id = {$_COOKIE['user_id']} OR friendee_id = {$_COOKIE['user_id']}";
@@ -73,7 +73,7 @@ if ($num_friends > 0) {
 							<td>' . $row2['begins_date'] . '</td>
 							<td>' . $row2['begins_time'] . '</td>
 							<td>' . $row2['ends_time'] . '</td>
-							<td>' . $row2['responer_id'] . '</td>
+							<td>' . $row2['responder_id'] . '</td>
 							<td>' . $subr2['first_name'] . ' ' . $subr2['last_name'] . '</td>
 							<td>' . $row2['tag'] . '</td>
 						</tr>';
@@ -131,9 +131,9 @@ if ($num_friends > 0) {
 					echo '<a class="btn btn-primary btn-sm" href="alltime.php">Go and see</a></h3>';
 				}
 
-}else
-{
+}	else
+	{
         echo 'You must be logged to access this page.';
-}
+	}
 
 ?>

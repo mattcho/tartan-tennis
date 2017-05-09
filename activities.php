@@ -19,7 +19,6 @@ $ra = mysqli_query($dbc, $all);
 $num_activities = mysqli_num_rows($ra);
 
 if ($num_activities > 0) {
-	echo '<h3>' . $num_activities . ' appointments.</h3>'; 
 					echo '<table class="table">
 							<tr>
 								<th>PartnerID</th>
