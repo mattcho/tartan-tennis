@@ -48,7 +48,8 @@ if ($is_loggedin) {
 		$q = "SELECT * FROM users WHERE user_id=$user"; 
 		$r = @mysqli_query($dbc, $q);
 		while ($row = mysqli_fetch_array($r)) {
-			echo $row['first_name'] . ' ' . $row['last_name'];
+			
+			echo "<a href=\"dashboard.php?profile_id=" . $row['user_id'] . "\">" . $row['first_name'] . " " . $row['last_name'] . "</a>";
 		}
 	}
 }
