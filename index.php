@@ -14,9 +14,9 @@ include ('includes/header.php');
   </div>
   <div class="col-md-4">
   	<?php include ('recommendations.php'); ?>
-  	<hr />
+  	<!-- <hr /> -->
   	<?php include ('personal.php'); ?> 
-  	<hr />
+  	<!-- <hr /> -->
 	<?php include ('activity_feeds.php'); ?>
   </div>
 </div>
