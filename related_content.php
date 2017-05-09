@@ -18,19 +18,19 @@ if ($is_loggedin) {
 
 	while ($row = mysqli_fetch_array($r)) {
 
-		if ($row['day'] = 'Monday') {
+		if ($row['day'] == 'Monday') {
 			$mon++;
-		} else if ($row['day'] = 'Tuesday') {
+		} else if ($row['day'] == 'Tuesday') {
 			$tue++;
-		} else if ($row['day'] = 'Wednesday') {
+		} else if ($row['day'] == 'Wednesday') {
 			$wed++;
-		} else if ($row['day'] = 'Thursday') {
+		} else if ($row['day'] == 'Thursday') {
 			$thu++;
-		} else if ($row['day'] = 'Friday') {
+		} else if ($row['day'] == 'Friday') {
 			$fri++;
-		} else if ($row['day'] = 'Saturday') {
+		} else if ($row['day'] == 'Saturday') {
 			$sat++;
-		} else if ($row['day'] = 'Sunday') {
+		} else if ($row['day'] == 'Sunday') {
 			$sun++;
 		}
 	}

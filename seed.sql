@@ -67,7 +67,49 @@ ALTER TABLE `times`
   ADD KEY `created_at` (`created_at`),
   ADD KEY `user_id` (`user_id`);
 
-INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES ('2017-05-01', '13:00', '14:00', 'aaa', 1);
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+INSERT INTO times (begins_date, begins_time, ends_time, tag, user_id) VALUES (CURDATE() - INTERVAL FLOOR(RAND()*300) DAY, CONCAT(1 + FLOOR(RAND()*20), ':00'), CONCAT(1 + FLOOR(RAND()*20), ':00'), 'aaa', 1 + FLOOR(RAND()*4));
+
+
+
 
 CREATE TABLE `appointments` (
   `appointment_id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -84,7 +126,33 @@ ALTER TABLE `appointments`
   ADD KEY `time_id` (`time_id`),
   ADD KEY `message_id` (`message_id`);
 
-INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1, 2, 1, 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
+INSERT INTO `appointments` (`poster_id`, `responder_id`, `time_id`, `message_id`, `is_accepted`) VALUES (1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*4), 1 + FLOOR(RAND()*40), 1, 1);
 
 CREATE TABLE `follows` (
   `follow_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
