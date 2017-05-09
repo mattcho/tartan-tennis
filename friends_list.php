@@ -1,10 +1,36 @@
 <!-- FAN -->
 <!-- show the group of friends and support flagging the friend -->
+
+
 <?php
 
 $page_title = 'Friends List';
 
 include ('includes/header.php');
+
+echo '<form action="friends_list.php" method="post">';
+
+if (isset($_POST['friend_id'])) {
+
+    var_dump($_POST);
+
+        echo $_POST["friendee_group"];
+        echo $_POST["friender_group"];
+
+        // if (isset($_POST['group'])) {
+        //     $q = "UPDATE friends
+        //     SET friendee_group = {$_POST['group']}
+        //     WHERE friend_id={$_POST['friend_id']}";
+        // }
+        // $r = mysqli_query($dbc, $q);
+        // $num = mysqli_num_rows($r);
+        // if ($num == 1) {
+        //     echo 'Your friends has been successfully added to the group!';
+        // } else {
+        //     echo 'Try again';
+        // }
+        
+    }
 
 if(isset($_COOKIE['user_id']) AND isset($_COOKIE['user_id']))
 {
@@ -23,6 +49,8 @@ if ($num_friends > 0) {
         <th>Email</th>
         <th>Like Num</th>
         <th>Flag Num</th>
+        <th>Group</th>
+        <th>Group Submit</th>
     </tr>';
     while($row = mysqli_fetch_array($ra)) {
 
@@ -67,6 +95,9 @@ if ($num_friends > 0) {
                             . $row['friendee_id'] . '">Like</a></th>
         <th>  ' . 0 . '          <a class="btn btn-primary btn-sm" href="Flag.php?likee_id='
                             . $row['friendee_id'] . '">Flag</a></th>
+                            <td><input name="friendee_group" type="text" /></td>
+                            <td><input type="submit" /></td>
+                            <td><input type="hidden" name="friend_id" value="' . $row['friend_id'] . '" /></td>
         </tr>';     
             }else{
         echo
@@ -78,6 +109,9 @@ if ($num_friends > 0) {
                             . $row['friendee_id'] . '">Like</a></th>
         <th>'. $subr['badlikenum'] . '      <a class="btn btn-primary btn-sm" href="Flag.php?likee_id='
                             . $row['friendee_id'] . '">Flag</a></th>
+                            <td><input name="friendee_group" type="text" /></td>
+                            <td><input type="submit" /></td>
+                            <td><input type="hidden" name="friend_id" value="' . $row['friend_id'] . '" /></td>
         </tr>';                            
     }}else{
         if($num_subr2==0){
@@ -90,6 +124,9 @@ if ($num_friends > 0) {
                             . $row['friender_id'] . '">Like</a></th>
         <th>'. 0 . '       <a class="btn btn-primary btn-sm" href="Flag.php?likee_id='
                             . $row['friender_id'] . '">Flag</a></th>
+                            <td><input name="friender_group" type="text" /></td>
+                            <td><input type="submit" /></td>
+                            <td><input type="hidden" name="friend_id" value="' . $row['friend_id'] . '" /></td>
         </tr>'; 
         }else{
         echo
@@ -101,6 +138,9 @@ if ($num_friends > 0) {
                             . $row['friender_id'] . '">Like</a></th>
         <th>'. $subr2['badlikenum'] . '       <a class="btn btn-primary btn-sm" href="Flag.php?likee_id='
                             . $row['friender_id'] . '">Flag</a></th>
+                            <td><input name="friender_group" type="text" /></td>
+                            <td><input type="submit" /></td>
+                            <td><input type="hidden" name="friend_id" value="' . $row['friend_id'] . '" /></td>
         </tr>';                            
             }
      }
@@ -110,10 +150,11 @@ if ($num_friends > 0) {
     echo   '<a class="btn btn-primary btn-sm" href="like_list.php?user_id='
                             . $_COOKIE['user_id'] . '">See Private Like </a> </h3> ';
     }  else {
-                    echo '<h3>You have no friends now.</h3>';
-                    echo '<h4>Wanna see more users?</h4>';
-                    echo '<a class="btn btn-primary btn-sm" href="alltime.php">Go and see</a></h3>';
-                }
+        echo '<h3>You have no friends now.</h3>';
+        echo '<h4>Wanna see more users?</h4>';
+        echo '<a class="btn btn-primary btn-sm" href="alltime.php">Go and see</a></h3>';
+    }
+    echo '</form>';
     // } else
     // {
     //     echo 'You must be logged to access this page.';

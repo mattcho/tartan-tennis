@@ -41,8 +41,7 @@ if ($num_friends > 0) {
 					}
 					echo '</table>';
 					echo " ";
-					echo '<h3><a class="btn btn-primary btn-sm" href="friends_list.php?receiver_id='
-							. $_COOKIE['user_id'] . '">Show more</a> </h3> ';
+					echo '<h3><a class="btn btn-primary btn-sm" href="friends_list.php">Show more</a> </h3> ';
 				} else {
 					echo '<h3>You have no friends now.</h3>';
 					echo '<h4>Wanna see more users?</h4>';
