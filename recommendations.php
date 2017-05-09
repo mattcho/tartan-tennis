@@ -3,7 +3,7 @@
 if ($is_loggedin) {
 
 	echo '<h4 class="patterns">Recommendations</h4>';
-	echo '<p>People tend to make friends with a friend of the friends:</p>';
+	echo '<p>People tend to make friends with their friends of friends:</p>';
 
 	// The logged in user's friends
 	$friends_list = array();
