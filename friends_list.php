@@ -11,7 +11,7 @@ if(isset($_COOKIE['user_id']))
 	$q = "SELECT user_id, first_name, last_name, email, likenum, badlikenum
 	FROM users 
 	INNER JOIN friends ON friender_id=user_id
-	INNER JOIN (SELECT *, SUM(private_like) as likenum, SUM(bad_like) as badlikenum
+	INNER JOIN (SELECT *, SUM(public_like) as likenum, SUM(bad_like) as badlikenum
 	FROM likes
 	GROUP BY likee_id) AS alllikes ON likee_id=user_id
     WHERE friendee_id={$_COOKIE['user_id']} OR friender_id = {$_COOKIE['user_id']}";
@@ -37,9 +37,9 @@ if(isset($_COOKIE['user_id']))
         <th>' . $row['user_id'] . '</th>
         <th>' . $row['first_name'] . ' ' . $row['last_name'] . '</th>
         <th>' . $row['email'] . '</th>
-        <th>' . $row['likenum'] . '			<a class="btn btn-primary btn-sm" href="like.php?likee_id='
+        <th>' . $row['likenum'] . '			<a class="btn btn-primary btn-sm" href="like_private.php?likee_id='
 							. $row['user_id'] . '">Like</a></th>
-        <th>'. $row['badlikenum'] . '		<a class="btn btn-primary btn-sm" href="Flag.php?likee_id='
+        <th>'. $row['badlikenum'] . '		<a class="btn btn-primary btn-sm" href="flag.php?likee_id='
 							. $row['user_id'] . '">Flag</a></th>
         </tr>';                            
     }
