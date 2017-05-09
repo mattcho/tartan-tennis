@@ -17,6 +17,7 @@ if ($is_loggedin) {
 	$sun = 0;
 
 	while ($row = mysqli_fetch_array($r)) {
+
 		if ($row['day'] = 'Monday') {
 			$mon++;
 		} else if ($row['day'] = 'Tuesday') {
