@@ -3,45 +3,46 @@
 if ($is_loggedin) {
 
 	echo '<h4 class="patterns">Related Content</h4>';
-	echo '<p>People made successful appointments on days as follows:</p>';
+	echo '<p>Most popular days. People made successful appointments on days as follows:</p>';
 
 	$q = "SELECT DAYNAME(begins_date) AS day FROM times JOIN appointments USING (time_id)";
 	$r = @mysqli_query($dbc, $q);
 
-	$mon = 0;
-	$tue = 0;
-	$wed = 0;
-	$thu = 0;
-	$fri = 0;
-	$sat = 0;
-	$sun = 0;
+	$days = array(
+		"Monday"=>0,
+		"Tuesday"=>0,
+		"Wednesday"=>0,
+		"Thursday"=>0,
+		"Friday"=>0,
+		"Saturday"=>0,
+		"Sunday"=>0
+	);
 
 	while ($row = mysqli_fetch_array($r)) {
 
 		if ($row['day'] == 'Monday') {
-			$mon++;
+			$days['Monday']++;
 		} else if ($row['day'] == 'Tuesday') {
-			$tue++;
+			$days['Tuesday']++;
 		} else if ($row['day'] == 'Wednesday') {
-			$wed++;
+			$days['Wednesday']++;
 		} else if ($row['day'] == 'Thursday') {
-			$thu++;
+			$days['Thursday']++;
 		} else if ($row['day'] == 'Friday') {
-			$fri++;
+			$days['Friday']++;
 		} else if ($row['day'] == 'Saturday') {
-			$sat++;
+			$days['Saturday']++;
 		} else if ($row['day'] == 'Sunday') {
-			$sun++;
+			$days['Sunday']++;
 		}
 	}
 
-	echo '<p>Monday: ' . $mon . '</p>';
-	echo '<p>Tuesday: ' . $tue . '</p>';
-	echo '<p>Wednesday: ' . $wed . '</p>';
-	echo '<p>Thursday: ' . $thu . '</p>';
-	echo '<p>Friday: ' . $fri . '</p>';
-	echo '<p>Saturday: ' . $sat . '</p>';
-	echo '<p>Sunday: ' . $sun . '</p>';
+	arsort($days);
+
+	while($element = current($days)) {
+	    echo key($days)." (".$element."),\n";
+	    next($days);
+	}
 }
 
 ?>
