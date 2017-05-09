@@ -7,7 +7,7 @@ if (!$is_loggedin) {
 	$r = @mysqli_query($dbc, $q);
 	$num_users = mysqli_num_rows($r);
 	echo '<p>Hi, there. We have ' . $num_users . ' users in our platform. Please sign up or log in.</p>';
-	echo '<p>For those who are lazy, try username: john@email.com password: 1234567</p>';
+	echo '<p>For those who are lazy, try username: johnd@email.com password: 123</p>';
 } else {
 	$q = "SELECT user_id FROM users WHERE user_id <> {$_COOKIE['user_id']}";
 	$r = @mysqli_query($dbc, $q);
@@ -157,51 +157,4 @@ WHERE user_id <> '$user_id' AND begins_date = '$bd' AND begins_time = '$bt'";
 		} // end of if (!$r) {} else		
 	} // end of if (!empty($errors)) {} else
 }
-?>
-
-<?php
-
-echo '<hr />';
-echo '<h4 class="patterns">Related Content</h4>';
-echo '<p>People made successful appointments on days as follows:</p>';
-
-// Suggest top 3 popular days, begins, ends and tags.
-
-$q = "SELECT DAYNAME(begins_date) AS day FROM times JOIN appointments USING (time_id)";
-$r = @mysqli_query($dbc, $q);
-
-$mon = 0;
-$tue = 0;
-$wed = 0;
-$thu = 0;
-$fri = 0;
-$sat = 0;
-$sun = 0;
-
-while ($row = mysqli_fetch_array($r)) {
-	if ($row['day'] = 'Monday') {
-		$mon++;
-	} else if ($row['day'] = 'Tuesday') {
-		$tue++;
-	} else if ($row['day'] = 'Wednesday') {
-		$wed++;
-	} else if ($row['day'] = 'Thursday') {
-		$thu++;
-	} else if ($row['day'] = 'Friday') {
-		$fri++;
-	} else if ($row['day'] = 'Saturday') {
-		$sat++;
-	} else if ($row['day'] = 'Sunday') {
-		$sun++;
-	}
-}
-
-echo '<p>Monday: ' . $mon . '</p>';
-echo '<p>Tuesday: ' . $tue . '</p>';
-echo '<p>Wednesday: ' . $wed . '</p>';
-echo '<p>Thursday: ' . $thu . '</p>';
-echo '<p>Friday: ' . $fri . '</p>';
-echo '<p>Saturday: ' . $sat . '</p>';
-echo '<p>Sunday: ' . $sun . '</p>';
-
 ?>
