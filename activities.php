@@ -14,16 +14,12 @@ echo '<h3> My Activity List </h3> ';
 $all="SELECT * 
 		FROM appointments INNER JOIN times
 		USING (time_id)
-		WHERE poster_id = {$_COOKIE['user_id']} OR responder_id = {$_COOKIE['user_id']}";
+		WHERE (poster_id = {$_COOKIE['user_id']} OR responder_id = {$_COOKIE['user_id']}) AND (begins_date<CURRENT_TIMESTAMP)";
 $ra = mysqli_query($dbc, $all);
 $num_activities = mysqli_num_rows($ra);
-if ($num_activities > 0) {
-	echo '<h3>You have ' . $num_activities . ' appointments now! </h3>'; 
-} else {
-	echo '<h3>You have no appointments now! </h3>'; 
-}
 
 if ($num_activities > 0) {
+	echo '<h3>You have ' . $num_activities . ' appointments now! </h3>'; 
 					echo '<table class="table">
 							<tr>
 								<th>PartnerID</th>
