@@ -10,7 +10,7 @@ if (isset($_COOKIE['first_name']) AND isset($_COOKIE['user_id'])) {
 
 $all = "SELECT * FROM friends WHERE friender_id = {$_COOKIE['user_id']} OR friendee_id = {$_COOKIE['user_id']}";
 $ra = mysqli_query($dbc, $all);
-$row = mysqli_fetch_array($ra)
+$row = mysqli_fetch_array($ra);
 $num_friends = mysqli_num_rows($ra);
 
 	if ($num_friends > 0) {		
