@@ -31,7 +31,7 @@ if(isset($_COOKIE['user_id']))
     while($row = mysqli_fetch_array($ra)) {
         $newmessage = "New";
         $q = "SELECT first_name FROM users WHERE user_id = {$row['sender_id']}";
-        $q2 = "SELECT first_name FROM users WHERE user_id = {$_COOKIE['user_id']}";
+        $q2 = "SELECT first_name FROM users WHERE user_id = {$row['receiver_id']}";
         $r = mysqli_query($dbc, $q);
         $r2 = mysqli_query($dbc, $q2);
         $subr = mysqli_fetch_array($r);
