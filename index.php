@@ -8,11 +8,11 @@ include ('includes/header.php');
 
 <div class="row">
   <div class="col-md-6">
-<?php include ('match.php'); ?>
+	<?php include ('match.php'); ?>
+	<hr />
+	<?php include ('related_content.php'); ?> 
   </div>
   <div class="col-md-6">
-  	<?php include ('related_content.php'); ?> 
-  	<hr />
   	<?php include ('recommendations.php'); ?> 
   	<?php include ('personal.php'); ?> 
 	<?php include ('activity_feeds.php'); ?>
