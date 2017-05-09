@@ -8,8 +8,6 @@ $page_title = 'Friends List';
 
 include ('includes/header.php');
 
-echo '<form action="friends_list.php" method="post">';
-
 if (isset($_POST['friend_id'])) {
 
     $friend_id = $_POST['friend_id'];
@@ -99,6 +97,9 @@ if ($num_friends > 0) {
         $subr2s = mysqli_fetch_array($r2s);
 
 
+        echo '<form action="friends_list.php" method="post">';
+
+
         if($row['friender_id'] == $_COOKIE['user_id']){
             if($num_subr==0){
         echo
@@ -113,8 +114,12 @@ if ($num_friends > 0) {
                             <td><input name="friendee_group" type="text" /></td>
                             <td><input type="submit" /></td>
                             <td><input type="hidden" name="friend_id" value="' . $row['friend_id'] . '" /></td>
-        </tr>';     
+        </tr>';
+
+        echo '</form>';     
             }else{
+
+                echo '<form action="friends_list.php" method="post">';
         echo
         '<tr>
         <th>' . $row['friendee_id'] . '</th>
@@ -127,9 +132,11 @@ if ($num_friends > 0) {
                             <td><input name="friendee_group" type="text" /></td>
                             <td><input type="submit" /></td>
                             <td><input type="hidden" name="friend_id" value="' . $row['friend_id'] . '" /></td>
-        </tr>';                            
+        </tr>';       
+                echo '</form>';                          
     }}else{
         if($num_subr2==0){
+            echo '<form action="friends_list.php" method="post">';
             echo
         '<tr>
         <th>' . $row['friender_id'] . '</th>
@@ -143,7 +150,9 @@ if ($num_friends > 0) {
                             <td><input type="submit" /></td>
                             <td><input type="hidden" name="friend_id" value="' . $row['friend_id'] . '" /></td>
         </tr>'; 
+        echo '</form>';
         }else{
+            echo '<form action="friends_list.php" method="post">';
         echo
         '<tr>
         <th>' . $row['friender_id'] . '</th>
@@ -156,7 +165,8 @@ if ($num_friends > 0) {
                             <td><input name="friender_group" type="text" /></td>
                             <td><input type="submit" /></td>
                             <td><input type="hidden" name="friend_id" value="' . $row['friend_id'] . '" /></td>
-        </tr>';                            
+        </tr>';  
+        echo '</form>';                          
             }
      }
     }
@@ -169,7 +179,6 @@ if ($num_friends > 0) {
         echo '<h4>Wanna see more users?</h4>';
         echo '<a class="btn btn-primary btn-sm" href="alltime.php">Go and see</a></h3>';
     }
-    echo '</form>';
     // } else
     // {
     //     echo 'You must be logged to access this page.';
